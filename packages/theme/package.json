@@ -1,6 +1,6 @@
 {
   "name": "slidev-theme-birdcar",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "keywords": ["slidev-theme", "slidev"],
   "engines": {
@@ -10,10 +10,11 @@
     "colorSchema": "dark",
     "defaults": {
       "fonts": {
-        "sans": "DM Sans",
+        "sans": "Satoshi",
         "mono": "JetBrains Mono"
       },
-      "hightlighter": "shiki"
+      "highlighter": "shiki",
+      "transition": "fade"
     }
   }
 }
