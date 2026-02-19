@@ -18,7 +18,7 @@ function getTalkMeta(slug: string): { title: string; info: string } {
 
 const talkEntries = talks.map((slug) => {
   const meta = getTalkMeta(slug)
-  return `    <li><a href="/talks/${slug}/">${meta.title}</a>${meta.info ? ` — ${meta.info}` : ''}</li>`
+  return `        <li><a class="talk-card" href="/talks/${slug}/"><div class="talk-title">${meta.title}</div>${meta.info ? `<div class="talk-info">${meta.info}</div>` : ''}</a></li>`
 })
 
 const template = readFileSync('site/index.html', 'utf-8')
