@@ -32,6 +32,16 @@ def greet(name: str) -> str:
 ```
 
 ---
+
+## Typography & Color
+
+Text with <Highlight color="sapphire">colorful</Highlight> words that <Highlight color="peach">stand out</Highlight> and make text-heavy slides <Highlight color="mauve">visually dynamic</Highlight>.
+
+- <Highlight color="green">Catppuccin</Highlight> palette with 14 accent colors
+- <Highlight color="pink">Clash Display</Highlight> for expressive headings
+- <Highlight color="yellow">Satoshi</Highlight> for comfortable body text
+
+---
 layout: section
 ---
 
@@ -76,6 +86,17 @@ Demonstrating the shared addon components.
 <Callout type="warning" title="Heads up">
   Monaco editor won't render in PDF exports.
 </Callout>
+
+---
+
+## Rough Notation
+
+Words can be <RoughMark type="underline" color="peach">underlined</RoughMark>,
+<RoughMark type="circle" color="red">circled</RoughMark>, or
+<RoughMark type="highlight" color="yellow">highlighted</RoughMark> with hand-drawn annotations.
+
+<RoughMark type="box" color="sapphire">Boxed text</RoughMark> and
+<RoughMark type="strike-through" color="maroon">struck through</RoughMark> are also available.
 
 ---
 
