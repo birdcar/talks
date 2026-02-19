@@ -1,0 +1,2 @@
+[install]
+# Bun workspaces are configured via package.json "workspaces" field

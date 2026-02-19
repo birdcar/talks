@@ -1,0 +1,26 @@
+{
+  "name": "talks",
+  "private": true,
+  "workspaces": {
+    "packages": ["packages/*", "talks/*"],
+    "catalog": {
+      "@slidev/cli": "^52.0.0",
+      "@slidev/types": "^52.0.0",
+      "typescript": "^5.7.0",
+      "slidev-theme-birdcar": "workspace:*",
+      "slidev-addon-birdcar": "workspace:*"
+    }
+  },
+  "scripts": {
+    "dev": "bun scripts/dev.ts",
+    "build": "bun scripts/build.ts",
+    "export": "bun scripts/export.ts",
+    "new-talk": "bun scripts/new-talk.ts",
+    "build:site": "bun scripts/build-site.ts"
+  },
+  "devDependencies": {
+    "@slidev/cli": "catalog:",
+    "@slidev/types": "catalog:",
+    "typescript": "catalog:"
+  }
+}
