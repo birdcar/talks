@@ -51,6 +51,31 @@ title: Talk Title
 ---
 ```
 
+## Skills
+
+### `/new-talk` — Guided Talk Creation
+
+Located at `.claude/skills/new-talk/SKILL.md`. Creates a new talk interactively using the Story Circle narrative framework.
+
+Stages: Information gathering → Narrative structure → Slide generation → Design direction → Review
+
+Reference files in `.claude/skills/new-talk/references/`:
+- `story-circle.md` — Story Circle framework adapted for tech talks
+- `slidev-syntax.md` — Slidev markdown syntax for this repo
+- `components.md` — All shared components with usage examples
+- `theme-variants.md` — Per-talk color variant system
+- `design-guide.md` — Slide design principles
+
+### `/update-refs` — Regenerate Skill References
+
+Located at `.claude/skills/update-refs/SKILL.md`. Reads current component, layout, and theme source files and regenerates the new-talk skill reference documents to keep them in sync.
+
+Run this after adding/modifying components, layouts, or theme styles.
+
+## Hooks
+
+A **Stop hook** runs `scripts/check-skill-refs.sh` at the end of each session. It checks whether component, layout, or theme files were modified without corresponding reference doc updates, and flags stale references. If flagged, run `/update-refs` to regenerate.
+
 ## Package Manager
 
 Bun. Always use `bun install`, never npm/yarn/pnpm.
