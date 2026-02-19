@@ -55,12 +55,13 @@ title: Talk Title
 
 ### `/new-talk` — Guided Talk Creation
 
-Located at `.claude/skills/new-talk/SKILL.md`. Creates a new talk interactively using the Story Circle narrative framework.
+Located at `.claude/skills/new-talk/SKILL.md`. Creates a new talk interactively with auto-suggested narrative framework selection from a library of 22 frameworks.
 
-Stages: Information gathering → Narrative structure → Slide generation → Design direction → Review
+Stages: Information gathering → Framework selection → Narrative mapping → Slide generation → Design direction → Review
 
 Reference files in `.claude/skills/new-talk/references/`:
-- `story-circle.md` — Story Circle framework adapted for tech talks
+- `framework-guide.md` — Framework selection guide with auto-suggest decision matrix
+- `frameworks/` — 22 narrative framework references (Foundational, Existential, Absurdist, Non-linear, Rhetorical)
 - `slidev-syntax.md` — Slidev markdown syntax for this repo
 - `components.md` — All shared components with usage examples
 - `theme-variants.md` — Per-talk color variant system

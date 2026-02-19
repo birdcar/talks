@@ -145,7 +145,7 @@ Never stack more than 3 text-heavy slides in a row. After 3, insert:
 
 ### Section Transitions
 
-Use `layout: section` slides as breathing room between Story Circle stages. They give the audience a moment to process and signal a shift in topic.
+Use `layout: section` slides as breathing room between narrative framework stages. They give the audience a moment to process and signal a shift in topic.
 
 ## Component Selection
 

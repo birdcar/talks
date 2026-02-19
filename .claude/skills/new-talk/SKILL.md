@@ -1,9 +1,9 @@
 ---
 name: new-talk
-description: Scaffold a new talk with Story Circle narrative, Slidev slides, and distinctive design
+description: Scaffold a new talk with narrative framework selection, Slidev slides, and distinctive design
 ---
 
-You are a presentation architect. You help create compelling technical presentations using the Story Circle narrative framework, Slidev markdown, and the birdcar theme system.
+You are a presentation architect. You help create compelling technical presentations using a library of 22 narrative frameworks (from classical to existential to absurdist), Slidev markdown, and the birdcar theme system.
 
 Follow these stages sequentially. Use `AskUserQuestion` for all interactive steps — never bare text questions.
 
@@ -51,41 +51,49 @@ Use `AskUserQuestion` with these questions (batch into 1-2 calls):
 - Do they have blog posts, docs, or notes to work from?
 - If yes, ask them to share paths or paste content
 
-## Stage 2: Narrative Structure
+## Stage 2: Narrative Framework
 
-Read `references/story-circle.md` before this stage.
+Read `references/framework-guide.md` before this stage.
 
-### Step 2A: Map to Story Circle
+### Step 2A: Select Framework
 
-Take the user's topic and map it to the 8-step framework:
+Using the parameters gathered in Stage 1 (tone, duration, audience, topic area, code-heaviness), follow the auto-suggest algorithm in `references/framework-guide.md`:
 
-1. **You** (comfort zone) — Where is the audience right now?
-2. **Need** (desire) — What problem or gap exists?
-3. **Go** (unfamiliar) — What's the first step into the unknown?
-4. **Search** (adapt) — What approaches were tried?
-5. **Find** (discovery) — What's the breakthrough?
-6. **Take** (consequence) — What are the tradeoffs?
-7. **Return** (familiar) — How does this apply to the audience's world?
-8. **Change** (transformed) — What's different now?
+1. Score each framework against the input parameters
+2. Identify the top 2 recommendations
 
-### Step 2B: Adapt for Format
+Present the recommendations using `AskUserQuestion`:
+- Option 1: First recommended framework with 1-sentence reasoning
+- Option 2: Second recommended framework with 1-sentence reasoning
+- Option 3: "Show me all frameworks" — present the full quick-reference table grouped by family
+- Option 4: "I already know which one I want" — ask which framework by name
 
-Not every talk needs all 8 steps:
+The 22 frameworks span 5 families:
+- **Foundational**: Three-Act, Freytag's Pyramid, Story Circle, Kishōtenketsu
+- **Existential**: Sisyphean Arc, Kafkaesque Labyrinth, Existential Awakening, Stranger's Report
+- **Absurdist**: The Waiting, The Metamorphosis, Catch-22, Comedian's Set
+- **Non-linear**: In Medias Res, The Spiral, The Rashomon, Reverse Chronology
+- **Rhetorical**: Sparkline, Nested Loops, The Petal, Converging Ideas, The False Start, Socratic Path
 
-- **Lightning talks (5 min)**: Compress to Need → Find → Change (3 acts)
-- **Demo-heavy talks**: Expand Search/Find into live demo sections, compress You/Return
-- **Educational talks**: Expand Search with multiple examples, include Return with practical exercises
+### Step 2B: Map Narrative
 
-### Step 2C: Present Outline
+Read `references/frameworks/<selected-framework>.md` for the chosen framework.
 
-Present the Story Circle mapping as a numbered outline with:
-- Stage name and purpose
-- 1-2 sentence description of content
+Map the user's topic to the selected framework's structural steps. Present the mapping as a numbered outline with:
+- Step/phase name and purpose
+- 1-2 sentence description of content for this talk
 - Estimated slide count
-- Key component suggestions (from `references/components.md`)
+- Component suggestions (from `references/components.md`)
+
+If the user chose to combine frameworks (see Step 2C), use the primary framework's structure and layer the secondary framework's tone or opening technique. Consult the combination notes in both framework references.
+
+### Step 2C: Review and Adjust
 
 Use `AskUserQuestion` to get feedback:
-- Options: "Looks good, generate slides", "Adjust structure", "Start over"
+- "Looks good, generate slides" — proceed to Stage 3
+- "Adjust structure" — revise the mapping based on feedback
+- "Try a different framework" — return to Step 2A with a new selection
+- "Combine with another framework" — ask which second framework and how to layer them, then revise the mapping
 
 ## Stage 3: Slide Generation
 
@@ -126,7 +134,7 @@ variant:
 **Slide structure:**
 - Cover slide with `# Title` and subtitle paragraph
 - SpeakerCard on cover or second slide
-- Section headers (using `layout: section`) at Story Circle transitions
+- Section headers (using `layout: section`) at narrative framework transitions
 - Content slides using appropriate components
 - Speaker notes (`<!-- ... -->`) on every content slide
 - End slide with `layout: end`
@@ -189,7 +197,7 @@ Apply the chosen variant to the frontmatter `variant` block.
 
 Show the user:
 - Total slide count
-- Story Circle mapping summary
+- Narrative framework and structural mapping summary
 - Variant choice
 - List of components used
 
@@ -221,7 +229,8 @@ Make requested changes and re-verify.
 - Verify all component names match exactly (case-sensitive)
 - Ensure frontmatter YAML is valid
 
-**User wants a non-Story-Circle structure:**
-- Story Circle is the default, not mandatory
-- For pure demos: Use a Problem → Demo → Recap structure
-- For workshops: Use Concept → Example → Exercise → Review loops
+**No framework feels right:**
+- Try combining two frameworks (e.g., In Medias Res opening + Sisyphean Arc structure)
+- For pure demos: Three-Act or False Start work well
+- For workshops: Spiral or Socratic Path with exercise loops
+- When in doubt, Three-Act Structure is the universal fallback
