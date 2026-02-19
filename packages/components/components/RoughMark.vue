@@ -16,29 +16,23 @@ const props = withDefaults(defineProps<{
   color: 'sapphire',
 })
 
-const colorHexMap: Record<string, string> = {
-  rosewater: '#f5e0dc',
-  flamingo: '#f2cdcd',
-  pink: '#f5c2e7',
-  mauve: '#cba6f7',
-  red: '#f38ba8',
-  maroon: '#eba0ac',
-  peach: '#fab387',
-  yellow: '#f9e2af',
-  green: '#a6e3a1',
-  teal: '#94e2d5',
-  sky: '#89dceb',
-  sapphire: '#74c7ec',
-  blue: '#89b4fa',
-  lavender: '#b4befe',
-}
+const accentNames = [
+  'rosewater', 'flamingo', 'pink', 'mauve', 'red', 'maroon', 'peach',
+  'yellow', 'green', 'teal', 'sky', 'sapphire', 'blue', 'lavender',
+] as const
 
-const resolvedColor = computed(() => colorHexMap[props.color] || props.color)
+function resolveColor(name: string): string {
+  if (accentNames.includes(name as typeof accentNames[number])) {
+    const cssVar = `--ctp-${name}`
+    return getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim() || name
+  }
+  return name
+}
 
 const markOptions = computed(() => {
   const opts: Record<string, unknown> = {
     type: props.type,
-    color: resolvedColor.value,
+    color: resolveColor(props.color),
   }
   if (props.at !== undefined) {
     opts.at = props.at
