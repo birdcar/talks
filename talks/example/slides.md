@@ -29,18 +29,72 @@ console.log(message)
 ```python
 def greet(name: str) -> str:
     return f"Hello, {name}!"
-
-message = greet("Slidev")
-print(message)
 ```
 
 ---
 layout: section
 ---
 
-# Section Divider
+# Component Library
 
-This layout is for introducing a new section of the talk.
+Demonstrating the shared addon components.
+
+---
+
+## Animated List
+
+<AnimatedList :items="['First point appears', 'Second point follows', 'Third point arrives', 'Fourth point lands']" animation="fade-up" />
+
+---
+
+## Terminal Demo
+
+<TerminalDemo :steps="[
+  { cmd: 'bun run new-talk my-talk', output: 'Created new talk: talks/my-talk' },
+  { cmd: 'bun run dev my-talk', output: 'Listening on http://localhost:3030' },
+]" />
+
+---
+
+## Speaker Card
+
+<SpeakerCard
+  name="Nick Bird"
+  title="Senior Support Engineer"
+  company="WorkOS"
+  :links="{ github: 'birdcar', twitter: 'birdcar' }"
+/>
+
+---
+
+## Callout Variants
+
+<Callout type="tip" title="Pro tip">
+  Always test your exports before presenting!
+</Callout>
+
+<Callout type="warning" title="Heads up">
+  Monaco editor won't render in PDF exports.
+</Callout>
+
+---
+
+## Key Points
+
+<KeyPoints :points="[
+  'Shared theme with per-talk variants',
+  'Component library grows with each talk',
+  'Single CLI for dev, build, and export',
+  'Unified site deployment',
+]" />
+
+---
+
+## Quote Block
+
+<QuoteBlock author="Alan Kay" source="1971">
+  The best way to predict the future is to invent it.
+</QuoteBlock>
 
 ---
 layout: two-col
@@ -92,50 +146,14 @@ The best way to predict the future is to invent it.
 
 ---
 
-## Click Animations
-
-<v-click>
-
-First, this appears.
-
-</v-click>
-
-<v-click>
-
-Then, this appears.
-
-</v-click>
-
-<v-click>
-
-Finally, this appears.
-
-</v-click>
-
----
-
 ## Speaker Notes
 
 This slide has speaker notes attached.
 
-Press the presenter button to see them.
-
 <!--
 These are speaker notes!
-
-They are only visible in presenter mode.
-You can write **markdown** here too.
+Only visible in presenter mode.
 -->
-
----
-
-## Addon Component
-
-The Placeholder component comes from our shared addon:
-
-<Placeholder>
-  This content is rendered inside the Placeholder component.
-</Placeholder>
 
 ---
 layout: end
