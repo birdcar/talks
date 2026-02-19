@@ -1,42 +1,57 @@
 /*
- * Brand: slidev-theme-birdcar
+ * slidev-theme-birdcar — Catppuccin Mocha base
  *
- * Typography: Space Grotesk (display) / DM Sans (body) / JetBrains Mono (code)
- * Palette: Deep dark blue bg, warm amber accent, near-white text
- * Signature: Thin amber accent line on structural slides
+ * Typography: Clash Display (display) / Satoshi (body) / JetBrains Mono (code)
+ * Palette: Catppuccin Mocha, default accent: sapphire
  * Grid: 8px base
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap');
-
 :root {
-  /* Brand colors — HSL for variant derivation */
-  --brand-primary-h: 230;
-  --brand-primary-s: 25%;
-  --brand-primary-l: 10%;
-  --brand-primary: hsl(var(--brand-primary-h), var(--brand-primary-s), var(--brand-primary-l));
+  /* ── Catppuccin Mocha palette ── */
+  --ctp-rosewater: #f5e0dc;
+  --ctp-flamingo: #f2cdcd;
+  --ctp-pink: #f5c2e7;
+  --ctp-mauve: #cba6f7;
+  --ctp-red: #f38ba8;
+  --ctp-maroon: #eba0ac;
+  --ctp-peach: #fab387;
+  --ctp-yellow: #f9e2af;
+  --ctp-green: #a6e3a1;
+  --ctp-teal: #94e2d5;
+  --ctp-sky: #89dceb;
+  --ctp-sapphire: #74c7ec;
+  --ctp-blue: #89b4fa;
+  --ctp-lavender: #b4befe;
+  --ctp-text: #cdd6f4;
+  --ctp-subtext1: #bac2de;
+  --ctp-subtext0: #a6adc8;
+  --ctp-overlay2: #9399b2;
+  --ctp-overlay1: #7f849c;
+  --ctp-overlay0: #6c7086;
+  --ctp-surface2: #585b70;
+  --ctp-surface1: #45475a;
+  --ctp-surface0: #313244;
+  --ctp-base: #1e1e2e;
+  --ctp-mantle: #181825;
+  --ctp-crust: #11111b;
 
-  --brand-accent-h: 30;
-  --brand-accent-s: 95%;
-  --brand-accent-l: 55%;
-  --brand-accent: hsl(var(--brand-accent-h), var(--brand-accent-s), var(--brand-accent-l));
+  /* ── Semantic tokens ── */
+  --slide-bg: var(--ctp-base);
+  --slide-bg-alt: var(--ctp-mantle);
+  --slide-bg-raised: var(--ctp-surface0);
+  --text-primary: var(--ctp-text);
+  --text-secondary: var(--ctp-subtext0);
+  --text-muted: var(--ctp-overlay1);
+  --accent: var(--ctp-sapphire);
+  --accent-alt: var(--ctp-peach);
+  --border: var(--ctp-surface1);
 
-  --brand-accent-light: hsl(var(--brand-accent-h), 90%, 70%);
-  --brand-accent-dim: hsl(var(--brand-accent-h), 60%, 35%);
-
-  /* Surfaces */
-  --slide-bg: var(--brand-primary);
-  --slide-bg-lighter: hsl(var(--brand-primary-h), 20%, 15%);
-  --text-primary: hsl(220, 15%, 90%);
-  --text-secondary: hsl(220, 10%, 60%);
-  --text-accent: var(--brand-accent);
-
-  /* Typography */
-  --font-display: 'Space Grotesk', system-ui, sans-serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
+  /* ── Typography ── */
+  --font-display: 'Clash Display', system-ui, sans-serif;
+  --font-body: 'Satoshi', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-  /* Spacing (8px grid) */
+  /* ── Spacing (8px grid) ── */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 16px;
@@ -49,49 +64,48 @@
   --content-gap: var(--space-4);
 }
 
-/* Base slide styles */
+/* ── Base slide ── */
 .slidev-layout {
   background: var(--slide-bg);
   color: var(--text-primary);
   font-family: var(--font-body);
   font-size: 1.1rem;
-  line-height: 1.6;
+  line-height: 1.65;
   padding: var(--slide-padding);
 }
 
-/* Typography */
+/* ── Typography ── */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.15;
   color: var(--text-primary);
 }
 
 h1 {
   font-size: 2.8rem;
-  font-weight: 700;
   letter-spacing: -0.02em;
 }
 
 h2 {
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   margin-bottom: var(--space-4);
 }
 
 h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.4rem;
+  font-weight: 500;
 }
 
-/* Body text */
+/* ── Body text ── */
 p {
   margin-bottom: var(--space-3);
   color: var(--text-primary);
 }
 
-/* Lists */
+/* ── Lists ── */
 ul, ol {
   margin-bottom: var(--space-3);
   padding-left: var(--space-4);
@@ -102,22 +116,22 @@ li {
 }
 
 li::marker {
-  color: var(--brand-accent);
+  color: var(--accent);
 }
 
-/* Links */
+/* ── Links ── */
 a {
-  color: var(--brand-accent-light);
+  color: var(--accent);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s;
 }
 
 a:hover {
-  border-bottom-color: var(--brand-accent-light);
+  border-bottom-color: var(--accent);
 }
 
-/* Strong / emphasis */
+/* ── Strong / emphasis ── */
 strong {
   font-weight: 600;
   color: var(--text-primary);
@@ -127,10 +141,21 @@ em {
   color: var(--text-secondary);
 }
 
-/* Accent line — visual signature */
+/* ── Accent line — visual signature ── */
 .accent-line {
   width: 64px;
   height: 3px;
-  background: var(--brand-accent);
+  background: var(--accent);
   border-radius: 2px;
+}
+
+/* ── v-click animation defaults ── */
+.slidev-vclick-target {
+  transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
+}
+
+.slidev-vclick-hidden {
+  opacity: 0;
+  transform: translateY(8px);
+  filter: blur(2px);
 }
