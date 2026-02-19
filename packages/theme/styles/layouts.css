@@ -1,0 +1,43 @@
+/* Layout-specific styles — supplements scoped styles in layout Vue SFCs */
+
+/* Cover layout accent line */
+.cover-layout .accent-line {
+  margin: var(--space-4) 0;
+}
+
+/* Section layout */
+.section-layout {
+  position: relative;
+}
+
+.section-layout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--brand-accent);
+}
+
+/* Quote layout */
+.quote-layout blockquote {
+  border-left: none;
+  padding: 0;
+  font-size: 1.8rem;
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+/* Two-col gap */
+.two-col-layout .col {
+  padding: var(--space-4);
+}
+
+/* Code focus layout */
+.code-focus-layout pre.slidev-code {
+  font-size: 1rem;
+  line-height: 1.8;
+}

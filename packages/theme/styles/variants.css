@@ -1,0 +1,11 @@
+/* Per-talk variant system — overrides via CSS custom properties.
+ * Variant values are injected from frontmatter by global-bottom.vue.
+ * CSS vars with --variant-* prefix override brand defaults when present.
+ */
+
+.slidev-layout {
+  --brand-accent: var(--variant-accent, hsl(var(--brand-accent-h), var(--brand-accent-s), var(--brand-accent-l)));
+  --brand-accent-light: var(--variant-accent-light, hsl(var(--brand-accent-h), 90%, 70%));
+  --slide-bg: var(--variant-background, hsl(var(--brand-primary-h), var(--brand-primary-s), var(--brand-primary-l)));
+  --text-accent: var(--variant-accent, var(--brand-accent));
+}

@@ -7,6 +7,13 @@
     "slidev": ">=0.50.0"
   },
   "slidev": {
-    "colorSchema": "both"
+    "colorSchema": "dark",
+    "defaults": {
+      "fonts": {
+        "sans": "DM Sans",
+        "mono": "JetBrains Mono"
+      },
+      "hightlighter": "shiki"
+    }
   }
 }
