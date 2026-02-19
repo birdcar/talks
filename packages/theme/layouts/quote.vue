@@ -32,7 +32,7 @@
 
 .quote-content :deep(p)::before {
   content: '\201C';
-  color: var(--brand-accent);
+  color: var(--accent);
   font-size: 3rem;
   line-height: 0;
   vertical-align: -0.3em;
@@ -42,7 +42,9 @@
 .quote-attribution {
   margin-top: var(--space-4);
   font-family: var(--font-mono);
-  font-size: 0.9rem;
-  color: var(--text-secondary);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 </style>

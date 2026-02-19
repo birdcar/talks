@@ -5,7 +5,7 @@
   margin: var(--space-4) 0;
 }
 
-/* Section layout */
+/* Section layout left accent bar */
 .section-layout {
   position: relative;
 }
@@ -17,7 +17,7 @@
   left: 0;
   width: 4px;
   height: 100%;
-  background: var(--brand-accent);
+  background: var(--accent);
 }
 
 /* Quote layout */

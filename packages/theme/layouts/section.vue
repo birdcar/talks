@@ -25,13 +25,13 @@
   left: 0;
   width: 4px;
   height: 100%;
-  background: var(--brand-accent);
+  background: var(--accent);
 }
 
 .section-content :deep(h1),
 .section-content :deep(h2) {
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.02em;
 }
 

@@ -25,17 +25,19 @@
 .end-content :deep(h1),
 .end-content :deep(h2) {
   font-size: 2.5rem;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: var(--space-4);
 }
 
 .end-content :deep(p) {
   color: var(--text-secondary);
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .end-content :deep(a) {
-  color: var(--brand-accent-light);
+  color: var(--accent);
 }
 </style>

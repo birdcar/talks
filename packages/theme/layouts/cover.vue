@@ -28,10 +28,10 @@
 }
 
 .cover-content :deep(h1) {
-  font-size: 3.5rem;
-  font-weight: 700;
+  font-size: 4rem;
+  font-weight: 600;
   letter-spacing: -0.03em;
-  line-height: 1.1;
+  line-height: 1.05;
   margin-bottom: var(--space-3);
 }
 
@@ -44,13 +44,15 @@
   position: absolute;
   bottom: var(--space-6);
   left: var(--slide-padding);
-  font-size: 0.9rem;
-  color: var(--text-secondary);
+  font-size: 0.85rem;
+  color: var(--text-muted);
   font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .meta-sep {
   margin: 0 var(--space-2);
-  color: var(--brand-accent);
+  color: var(--accent);
 }
 </style>
