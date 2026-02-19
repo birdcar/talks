@@ -37,5 +37,6 @@
 .col {
   display: flex;
   flex-direction: column;
+  gap: var(--content-gap);
 }
 </style>
