@@ -1,11 +1,19 @@
-/* Per-talk variant system — overrides via CSS custom properties.
- * Variant values are injected from frontmatter by global-bottom.vue.
- * CSS vars with --variant-* prefix override brand defaults when present.
+/*
+ * Per-talk variant system — Catppuccin flavor + accent switching.
+ *
+ * Frontmatter: variant: { flavor: 'frappe', accent: 'mauve' }
+ * global-bottom.vue injects --ctp-* overrides for the chosen flavor,
+ * and remaps --accent to the chosen accent color.
+ *
+ * No CSS overrides needed here — the semantic tokens in base.css
+ * already reference --ctp-* vars, so injecting new --ctp-* values
+ * on :root cascades through automatically.
+ *
+ * This file is kept as a placeholder for any future variant-specific
+ * style rules (e.g., latte-specific adjustments for light mode).
  */
 
-.slidev-layout {
-  --brand-accent: var(--variant-accent, hsl(var(--brand-accent-h), var(--brand-accent-s), var(--brand-accent-l)));
-  --brand-accent-light: var(--variant-accent-light, hsl(var(--brand-accent-h), 90%, 70%));
-  --slide-bg: var(--variant-background, hsl(var(--brand-primary-h), var(--brand-primary-s), var(--brand-primary-l)));
-  --text-accent: var(--variant-accent, var(--brand-accent));
+/* Latte flavor needs inverted code block treatment */
+:root[data-ctp-flavor="latte"] .slidev-layout {
+  color-scheme: light;
 }

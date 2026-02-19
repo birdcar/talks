@@ -1,16 +1,36 @@
 <script setup lang="ts">
 import { watchEffect, getCurrentInstance } from 'vue'
+import { palettes, colorNames, type FlavorName, type AccentName } from '../palettes'
 
 const instance = getCurrentInstance()
 const slidev = instance?.appContext.config.globalProperties.$slidev
 
 watchEffect(() => {
-  const variant = slidev?.configs?.variant as Record<string, string> | undefined
+  const variant = slidev?.configs?.variant as
+    | { flavor?: FlavorName; accent?: AccentName }
+    | undefined
   if (!variant) return
+
   const root = document.documentElement
-  if (variant.accent) root.style.setProperty('--variant-accent', variant.accent)
-  if (variant.accentLight) root.style.setProperty('--variant-accent-light', variant.accentLight)
-  if (variant.background) root.style.setProperty('--variant-background', variant.background)
+
+  // Apply flavor palette
+  if (variant.flavor && variant.flavor in palettes) {
+    const palette = palettes[variant.flavor]
+    root.setAttribute('data-ctp-flavor', variant.flavor)
+    for (const name of colorNames) {
+      root.style.setProperty(`--ctp-${name}`, palette[name])
+    }
+  }
+
+  // Remap accent
+  if (variant.accent) {
+    const flavor = variant.flavor || 'mocha'
+    const palette = palettes[flavor]
+    const accentKey = variant.accent as keyof typeof palette
+    if (accentKey in palette) {
+      root.style.setProperty('--accent', palette[accentKey])
+    }
+  }
 })
 </script>
 
