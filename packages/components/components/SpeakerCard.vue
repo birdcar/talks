@@ -47,11 +47,11 @@ function linkUrl(platform: string, handle: string): string {
 .speaker-card {
   display: flex;
   align-items: center;
-  gap: var(--space-4, 24px);
-  padding: var(--space-4, 24px);
-  background: hsl(var(--brand-primary-h, 230), 20%, 14%);
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--slide-bg-raised);
   border-radius: 8px;
-  border: 1px solid hsl(var(--brand-primary-h, 230), 15%, 22%);
+  border: 1px solid var(--border);
 }
 
 .speaker-avatar {
@@ -69,52 +69,54 @@ function linkUrl(platform: string, handle: string): string {
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: var(--brand-accent, #e89d0e);
-  color: var(--slide-bg, #1a1a2e);
+  background: var(--accent);
+  color: var(--ctp-crust);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display, sans-serif);
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.2rem;
 }
 
 .speaker-name {
-  font-family: var(--font-display, sans-serif);
+  font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--text-primary, #e0e0e0);
+  color: var(--text-primary);
 }
 
 .speaker-title {
   font-size: 0.9rem;
-  color: var(--text-secondary, #888);
+  color: var(--text-secondary);
   margin-top: 2px;
 }
 
 .speaker-company {
   font-size: 0.85rem;
-  color: var(--text-accent, #e89d0e);
+  color: var(--accent);
   margin-top: 2px;
 }
 
 .speaker-links {
   display: flex;
-  gap: var(--space-3, 16px);
-  margin-top: var(--space-2, 8px);
+  gap: var(--space-3);
+  margin-top: var(--space-2);
 }
 
 .speaker-link {
-  font-family: var(--font-mono, monospace);
+  font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--text-secondary, #888);
+  color: var(--text-muted);
   text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   border-bottom: 1px solid transparent;
   transition: color 0.2s, border-color 0.2s;
 }
 
 .speaker-link:hover {
-  color: var(--brand-accent-light, #f0b060);
-  border-bottom-color: var(--brand-accent-light, #f0b060);
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 </style>

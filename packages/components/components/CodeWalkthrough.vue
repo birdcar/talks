@@ -78,10 +78,10 @@ function isHighlighted(lineNum: number): boolean {
 <style scoped>
 .code-walkthrough {
   display: flex;
-  gap: var(--space-4, 24px);
+  gap: var(--space-4);
   border-radius: 8px;
   overflow: hidden;
-  background: hsl(var(--brand-primary-h, 230), 20%, 8%);
+  background: var(--ctp-crust);
 }
 
 .walkthrough-code {
@@ -91,42 +91,42 @@ function isHighlighted(lineNum: number): boolean {
 
 .walkthrough-pre {
   margin: 0;
-  padding: var(--space-4, 24px);
-  font-family: var(--font-mono, monospace);
+  padding: var(--space-4);
+  font-family: var(--font-mono);
   font-size: 0.85rem;
   line-height: 1.8;
 }
 
 .walkthrough-line {
   display: block;
-  padding: 0 var(--space-2, 8px);
+  padding: 0 var(--space-2);
   border-left: 3px solid transparent;
   transition: background 0.3s, border-color 0.3s;
 }
 
 .walkthrough-line.highlighted {
-  background: hsl(var(--brand-accent-h, 30), 30%, 15%);
-  border-left-color: var(--brand-accent, #e89d0e);
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  border-left-color: var(--accent);
 }
 
 .line-number {
   display: inline-block;
   width: 2.5em;
-  color: var(--text-secondary, #666);
+  color: var(--text-muted);
   opacity: 0.5;
   user-select: none;
   text-align: right;
-  margin-right: var(--space-3, 16px);
+  margin-right: var(--space-3);
 }
 
 .walkthrough-note {
   width: 240px;
-  padding: var(--space-4, 24px);
-  background: hsl(var(--brand-primary-h, 230), 20%, 12%);
+  padding: var(--space-4);
+  background: var(--slide-bg-alt);
   font-size: 0.9rem;
-  color: var(--text-secondary, #aaa);
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
-  border-left: 1px solid hsl(var(--brand-primary-h, 230), 15%, 20%);
+  border-left: 1px solid var(--border);
 }
 </style>

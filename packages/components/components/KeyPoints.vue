@@ -21,18 +21,18 @@ withDefaults(defineProps<{
 
 <style scoped>
 .key-points {
-  padding: var(--space-4, 24px);
-  background: hsl(var(--brand-primary-h, 230), 20%, 14%);
+  padding: var(--space-4);
+  background: var(--slide-bg-raised);
   border-radius: 8px;
-  border: 1px solid hsl(var(--brand-primary-h, 230), 15%, 22%);
+  border: 1px solid var(--border);
 }
 
 .key-points-title {
-  font-family: var(--font-display, sans-serif);
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: 1.1rem;
-  color: var(--brand-accent, #e89d0e);
-  margin-bottom: var(--space-3, 16px);
+  color: var(--accent);
+  margin-bottom: var(--space-3);
 }
 
 .key-points-list {
@@ -44,8 +44,8 @@ withDefaults(defineProps<{
 .key-point {
   display: flex;
   align-items: flex-start;
-  gap: var(--space-3, 16px);
-  margin-bottom: var(--space-3, 16px);
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
 }
 
 .key-point:last-child {
@@ -57,12 +57,12 @@ withDefaults(defineProps<{
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: var(--brand-accent, #e89d0e);
-  color: var(--slide-bg, #1a1a2e);
+  background: var(--accent);
+  color: var(--ctp-crust);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-mono, monospace);
+  font-family: var(--font-mono);
   font-weight: 700;
   font-size: 0.75rem;
 }

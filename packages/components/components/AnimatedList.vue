@@ -1,7 +1,7 @@
 <template>
   <ul class="animated-list" :class="`animation-${animation}`">
     <template v-if="items && items.length">
-      <li v-for="(item, i) in items" :key="i" v-click class="animated-item">
+      <li v-for="(item, i) in items" :key="i" v-click class="animated-item" :style="stagger ? { transitionDelay: `${i * stagger}ms` } : {}">
         {{ item }}
       </li>
     </template>
@@ -14,7 +14,7 @@
 <script setup lang="ts">
 withDefaults(defineProps<{
   items?: string[]
-  animation?: 'fade-up' | 'slide-right' | 'fade' | 'none'
+  animation?: 'fade-up' | 'slide-right' | 'fade' | 'scale-in' | 'none'
   stagger?: number
 }>(), {
   animation: 'fade-up',
@@ -31,9 +31,9 @@ withDefaults(defineProps<{
 
 .animated-item,
 .animated-list :deep(li) {
-  margin-bottom: var(--space-3, 16px);
-  padding-left: var(--space-3, 16px);
-  border-left: 2px solid var(--brand-accent, #e89d0e);
+  margin-bottom: var(--space-3);
+  padding-left: var(--space-3);
+  border-left: 2px solid var(--accent);
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
@@ -55,5 +55,12 @@ withDefaults(defineProps<{
 .animation-fade .animated-item.slidev-vclick-hidden,
 .animation-fade :deep(li.slidev-vclick-hidden) {
   opacity: 0;
+}
+
+/* Scale-in animation */
+.animation-scale-in .animated-item.slidev-vclick-hidden,
+.animation-scale-in :deep(li.slidev-vclick-hidden) {
+  opacity: 0;
+  transform: scale(0.95);
 }
 </style>

@@ -38,9 +38,9 @@ withDefaults(defineProps<{
 .terminal-demo {
   border-radius: 8px;
   overflow: hidden;
-  background: hsl(0, 0%, 8%);
-  border: 1px solid hsl(0, 0%, 18%);
-  font-family: var(--font-mono, monospace);
+  background: var(--ctp-crust);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
 }
 
 .terminal-chrome {
@@ -48,8 +48,8 @@ withDefaults(defineProps<{
   align-items: center;
   gap: 12px;
   padding: 10px 16px;
-  background: hsl(0, 0%, 12%);
-  border-bottom: 1px solid hsl(0, 0%, 18%);
+  background: var(--slide-bg-alt);
+  border-bottom: 1px solid var(--border);
 }
 
 .terminal-dots {
@@ -63,13 +63,13 @@ withDefaults(defineProps<{
   border-radius: 50%;
 }
 
-.dot-red { background: #ff5f57; }
-.dot-yellow { background: #febc2e; }
-.dot-green { background: #28c840; }
+.dot-red { background: var(--ctp-red); }
+.dot-yellow { background: var(--ctp-yellow); }
+.dot-green { background: var(--ctp-green); }
 
 .terminal-title {
   font-size: 0.75rem;
-  color: hsl(0, 0%, 50%);
+  color: var(--text-muted);
 }
 
 .terminal-body {
@@ -88,18 +88,18 @@ withDefaults(defineProps<{
 }
 
 .terminal-prompt {
-  color: var(--brand-accent, #e89d0e);
+  color: var(--accent);
 }
 
 .terminal-cmd {
-  color: hsl(0, 0%, 90%);
+  color: var(--text-primary);
 }
 
 .terminal-output {
   margin: 4px 0 0 0;
   padding: 0;
   background: transparent;
-  color: hsl(0, 0%, 60%);
+  color: var(--text-secondary);
   font-size: 0.8rem;
   white-space: pre-wrap;
 }

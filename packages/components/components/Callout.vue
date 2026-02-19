@@ -34,11 +34,11 @@ const icon = computed(() => {
 <style scoped>
 .callout {
   display: flex;
-  gap: var(--space-3, 16px);
-  padding: var(--space-3, 16px) var(--space-4, 24px);
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
   border-radius: 8px;
   border-left: 3px solid;
-  margin: var(--space-3, 16px) 0;
+  margin: var(--space-3) 0;
 }
 
 .callout-icon {
@@ -49,13 +49,13 @@ const icon = computed(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-mono, monospace);
+  font-family: var(--font-mono);
   font-weight: 700;
   font-size: 0.75rem;
 }
 
 .callout-title {
-  font-family: var(--font-display, sans-serif);
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: 0.9rem;
   margin-bottom: 4px;
@@ -66,44 +66,43 @@ const icon = computed(() => {
   line-height: 1.5;
 }
 
-/* Type variants */
 .callout-info {
-  background: hsla(210, 80%, 50%, 0.1);
-  border-color: hsl(210, 80%, 55%);
+  background: color-mix(in srgb, var(--ctp-blue) 8%, transparent);
+  border-color: var(--ctp-blue);
 }
 .callout-info .callout-icon {
-  background: hsl(210, 80%, 55%);
-  color: white;
+  background: var(--ctp-blue);
+  color: var(--ctp-crust);
 }
-.callout-info .callout-title { color: hsl(210, 80%, 70%); }
+.callout-info .callout-title { color: var(--ctp-blue); }
 
 .callout-warning {
-  background: hsla(40, 90%, 50%, 0.1);
-  border-color: hsl(40, 90%, 55%);
+  background: color-mix(in srgb, var(--ctp-yellow) 8%, transparent);
+  border-color: var(--ctp-yellow);
 }
 .callout-warning .callout-icon {
-  background: hsl(40, 90%, 55%);
-  color: hsl(40, 90%, 15%);
+  background: var(--ctp-yellow);
+  color: var(--ctp-crust);
 }
-.callout-warning .callout-title { color: hsl(40, 90%, 70%); }
+.callout-warning .callout-title { color: var(--ctp-yellow); }
 
 .callout-tip {
-  background: hsla(150, 70%, 45%, 0.1);
-  border-color: hsl(150, 70%, 45%);
+  background: color-mix(in srgb, var(--ctp-green) 8%, transparent);
+  border-color: var(--ctp-green);
 }
 .callout-tip .callout-icon {
-  background: hsl(150, 70%, 45%);
-  color: white;
+  background: var(--ctp-green);
+  color: var(--ctp-crust);
 }
-.callout-tip .callout-title { color: hsl(150, 70%, 65%); }
+.callout-tip .callout-title { color: var(--ctp-green); }
 
 .callout-danger {
-  background: hsla(0, 80%, 55%, 0.1);
-  border-color: hsl(0, 80%, 55%);
+  background: color-mix(in srgb, var(--ctp-red) 8%, transparent);
+  border-color: var(--ctp-red);
 }
 .callout-danger .callout-icon {
-  background: hsl(0, 80%, 55%);
-  color: white;
+  background: var(--ctp-red);
+  color: var(--ctp-crust);
 }
-.callout-danger .callout-title { color: hsl(0, 80%, 70%); }
+.callout-danger .callout-title { color: var(--ctp-red); }
 </style>

@@ -29,8 +29,8 @@ withDefaults(defineProps<{
 .code-playground {
   border-radius: 8px;
   overflow: hidden;
-  background: hsl(var(--brand-primary-h, 230), 20%, 8%);
-  border: 1px solid hsl(var(--brand-primary-h, 230), 15%, 20%);
+  background: var(--ctp-crust);
+  border: 1px solid var(--border);
 }
 
 .playground-header {
@@ -38,26 +38,26 @@ withDefaults(defineProps<{
   align-items: center;
   justify-content: space-between;
   padding: 8px 16px;
-  background: hsl(var(--brand-primary-h, 230), 20%, 12%);
-  border-bottom: 1px solid hsl(var(--brand-primary-h, 230), 15%, 20%);
-  font-family: var(--font-mono, monospace);
+  background: var(--slide-bg-alt);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
   font-size: 0.75rem;
 }
 
 .playground-filename {
-  color: var(--text-primary, #e0e0e0);
+  color: var(--text-primary);
   font-weight: 500;
 }
 
 .playground-lang {
-  color: var(--text-secondary, #888);
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .playground-editor {
   padding: 16px;
-  font-family: var(--font-mono, monospace);
+  font-family: var(--font-mono);
   font-size: 0.9rem;
   line-height: 1.7;
 }
