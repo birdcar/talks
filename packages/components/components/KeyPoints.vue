@@ -30,7 +30,7 @@ withDefaults(defineProps<{
 .key-points-title {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: var(--accent);
   margin-bottom: var(--space-3);
 }
@@ -54,8 +54,8 @@ withDefaults(defineProps<{
 
 .key-point-marker {
   flex-shrink: 0;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: var(--accent);
   color: var(--ctp-crust);
@@ -64,11 +64,11 @@ withDefaults(defineProps<{
   justify-content: center;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
 }
 
 .key-point-text {
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   line-height: 1.4;
 }
 </style>

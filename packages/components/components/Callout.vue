@@ -43,26 +43,26 @@ const icon = computed(() => {
 
 .callout-icon {
   flex-shrink: 0;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
 }
 
 .callout-title {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   margin-bottom: 4px;
 }
 
 .callout-content {
-  font-size: 0.9rem;
+  font-size: 1.15rem;
   line-height: 1.5;
 }
 

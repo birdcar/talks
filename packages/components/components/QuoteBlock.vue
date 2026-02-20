@@ -28,7 +28,7 @@ defineProps<{
 }
 
 .quote-text {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   line-height: 1.5;
   font-style: italic;
   color: var(--text-primary);
@@ -37,7 +37,7 @@ defineProps<{
 .quote-footer {
   margin-top: var(--space-3);
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;

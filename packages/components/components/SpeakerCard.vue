@@ -6,6 +6,7 @@
     </div>
     <div class="speaker-info">
       <div class="speaker-name">{{ name }}</div>
+      <div v-if="handle" class="speaker-handle">{{ handle }}</div>
       <div v-if="title" class="speaker-title">{{ title }}</div>
       <div v-if="company" class="speaker-company">{{ company }}</div>
       <div v-if="links && Object.keys(links).length" class="speaker-links">
@@ -22,6 +23,7 @@ import { computed } from 'vue'
 
 const props = defineProps<{
   name: string
+  handle?: string
   title?: string
   company?: string
   avatar?: string
@@ -35,7 +37,7 @@ const initials = computed(() =>
 function linkUrl(platform: string, handle: string): string {
   const urls: Record<string, string> = {
     github: `https://github.com/${handle}`,
-    twitter: `https://twitter.com/${handle}`,
+    bluesky: `https://bsky.app/profile/${handle}`,
     linkedin: `https://linkedin.com/in/${handle}`,
     website: handle.startsWith('http') ? handle : `https://${handle}`,
   }
@@ -47,11 +49,13 @@ function linkUrl(platform: string, handle: string): string {
 .speaker-card {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
-  padding: var(--space-4);
+  gap: var(--space-5);
+  padding: var(--space-6);
   background: var(--slide-bg-raised);
   border-radius: 8px;
   border: 1px solid var(--border);
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .speaker-avatar {
@@ -59,15 +63,15 @@ function linkUrl(platform: string, handle: string): string {
 }
 
 .avatar-img {
-  width: 64px;
-  height: 64px;
+  width: 112px;
+  height: 112px;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .avatar-initials {
-  width: 64px;
-  height: 64px;
+  width: 112px;
+  height: 112px;
   border-radius: 50%;
   background: var(--accent);
   color: var(--ctp-crust);
@@ -76,24 +80,31 @@ function linkUrl(platform: string, handle: string): string {
   justify-content: center;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 2rem;
 }
 
 .speaker-name {
   font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.75rem;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
-.speaker-title {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
+.speaker-handle {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--text-muted);
   margin-top: 2px;
 }
 
+.speaker-title {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  margin-top: var(--space-2);
+}
+
 .speaker-company {
-  font-size: 0.85rem;
+  font-size: 1.05rem;
   color: var(--accent);
   margin-top: 2px;
 }
@@ -101,12 +112,12 @@ function linkUrl(platform: string, handle: string): string {
 .speaker-links {
   display: flex;
   gap: var(--space-3);
-  margin-top: var(--space-2);
+  margin-top: var(--space-3);
 }
 
 .speaker-link {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
   text-decoration: none;
   text-transform: uppercase;

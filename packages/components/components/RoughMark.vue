@@ -1,5 +1,5 @@
 <template>
-  <span v-mark="markOptions">
+  <span v-mark="markOptions" class="rough-mark" :class="{ 'rough-mark-highlight': type === 'highlight' }">
     <slot />
   </span>
 </template>
@@ -40,3 +40,17 @@ const markOptions = computed(() => {
   return opts
 })
 </script>
+
+<style scoped>
+.rough-mark {
+  width: fit-content;
+}
+
+.rough-mark-highlight {
+  transition: color 0.3s ease;
+}
+
+.rough-mark-highlight:has(svg) {
+  color: var(--ctp-crust);
+}
+</style>
