@@ -24,7 +24,15 @@ const accentNames = [
 function resolveColor(name: string): string {
   if (accentNames.includes(name as typeof accentNames[number])) {
     const cssVar = `--ctp-${name}`
-    return getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim() || name
+    const hex = getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim() || name
+    // For highlights, use a lighter opacity so it reads like a real highlighter
+    if (props.type === 'highlight' && hex.startsWith('#')) {
+      const r = parseInt(hex.slice(1, 3), 16)
+      const g = parseInt(hex.slice(3, 5), 16)
+      const b = parseInt(hex.slice(5, 7), 16)
+      return `rgba(${r}, ${g}, ${b}, 0.3)`
+    }
+    return hex
   }
   return name
 }
@@ -51,6 +59,6 @@ const markOptions = computed(() => {
 }
 
 .rough-mark-highlight:has(svg) {
-  color: var(--ctp-crust);
+  color: var(--ctp-text);
 }
 </style>
