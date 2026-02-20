@@ -36,10 +36,6 @@
   margin-bottom: var(--space-5);
 }
 
-.two-col-header :deep(h2) {
-  font-size: 2.4rem;
-}
-
 .two-col-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

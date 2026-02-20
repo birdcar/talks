@@ -75,26 +75,31 @@
 }
 
 /* ── Typography ── */
-h1, h2, h3, h4, h5, h6 {
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3,
+.slidev-layout h4,
+.slidev-layout h5,
+.slidev-layout h6 {
   font-family: var(--font-display);
   font-weight: 600;
   line-height: 1.15;
   color: var(--text-primary);
 }
 
-h1 {
+.slidev-layout h1 {
   font-size: 3.2rem;
   letter-spacing: -0.02em;
 }
 
-h2 {
+.slidev-layout h2 {
   font-size: 2.4rem;
   font-weight: 500;
   letter-spacing: -0.01em;
   margin-bottom: var(--space-4);
 }
 
-h3 {
+.slidev-layout h3 {
   font-size: 1.8rem;
   font-weight: 500;
 }
