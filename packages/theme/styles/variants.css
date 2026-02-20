@@ -9,11 +9,17 @@
  * already reference --ctp-* vars, so injecting new --ctp-* values
  * on :root cascades through automatically.
  *
- * This file is kept as a placeholder for any future variant-specific
- * style rules (e.g., latte-specific adjustments for light mode).
+ * Default flavor is Latte (light). Dark flavors override color-scheme.
  */
 
-/* Latte flavor needs inverted code block treatment */
-:root[data-ctp-flavor="latte"] .slidev-layout {
+/* Latte is the default — base layout uses light color scheme */
+.slidev-layout {
   color-scheme: light;
+}
+
+/* Dark flavors need to switch back to dark color scheme */
+:root[data-ctp-flavor="mocha"] .slidev-layout,
+:root[data-ctp-flavor="macchiato"] .slidev-layout,
+:root[data-ctp-flavor="frappe"] .slidev-layout {
+  color-scheme: dark;
 }
