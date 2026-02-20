@@ -64,13 +64,13 @@ layout: section
 | Layout | Purpose | Slots | Frontmatter Attrs | Key Styles |
 |--------|---------|-------|--------------------|------------|
 | `cover` | Opening slide | `default` | `author`, `date` | h1: 4rem/600, accent-line, meta in mono/uppercase/tracking-wide (`--font-mono`), separator uses `--accent` |
-| `default` | Standard content | `default` | — | Flexbox column with `gap: var(--content-gap)`, padded with `--slide-padding` |
+| `default` | Standard content | `default` | — | Flexbox column, vertically centered, `gap: var(--content-gap)`, padded with `--slide-padding` top/bottom and 15% left/right |
 | `section` | Section divider | `default` | — | Full-height accent bar (4px, `--accent`) on left edge, h1/h2: 3rem/600 |
-| `two-col` | Side-by-side | `default`, `left`, `right` | — | Header slot above, 1fr/1fr grid with `gap: var(--space-5)`, columns use `gap: var(--content-gap)` |
+| `two-col` | Side-by-side | `default`, `left`, `right` | — | Centered inner container (max-width 1100px), left-aligned header slot above (h2: 2.4rem), 1fr/1fr grid with `gap: var(--space-6)`, columns use `gap: var(--content-gap)` |
 | `code-focus` | Code-heavy | `default` | — | Vertically centered, h2/h3: 1.3rem/500 in `--text-secondary`, code at 1rem/1.8 line-height |
 | `image-full` | Full-bleed image | `default` | `image` | Background image via `image` prop, gradient overlay (transparent 40% to black 75%), white text with shadow |
-| `quote` | Quotation | `default` | `author` | Centered, quote text: 2rem/500 italic in `--font-display`, curly-quote accent, attribution: mono/uppercase/tracking (`--text-muted`) |
-| `end` | Closing slide | `default` | — | h1/h2: 2.5rem/600, paragraph text: mono/uppercase/tracking-wide, links use `--accent` |
+| `quote` | Quotation | `default` | `author` | Centered, quote text: 2.4rem/500 italic in `--font-display`, opening + closing curly-quote accents, attribution: mono/1rem/uppercase/tracking (`--text-muted`) |
+| `end` | Closing slide | `default` | — | Centered (both axes), h1/h2: 2.5rem/600, paragraph text: mono/1.1rem/tracking, links use `--accent` |
 
 ### Layout Details
 
@@ -83,8 +83,8 @@ layout: section
 
 **default** (`default.vue`)
 - Classes: `.default-layout`
-- Flexbox column with `gap: var(--content-gap)` for automatic spacing between child elements
-- Padded with `var(--slide-padding)`, full height, `background: var(--slide-bg)`
+- Flexbox column with `justify-content: center` and `gap: var(--content-gap)` for automatic vertical centering and spacing
+- Padded with `var(--slide-padding)` top/bottom and `15%` left/right for horizontal centering, full height, `background: var(--slide-bg)`
 
 **section** (`section.vue`)
 - Classes: `.section-layout`, `.section-content`
@@ -95,9 +95,10 @@ layout: section
 - Paragraph: `font-size: 1.2rem; color: var(--text-secondary)`
 
 **two-col** (`two-col.vue`)
-- Classes: `.two-col-layout`, `.two-col-header`, `.two-col-grid`, `.col`
-- Default slot renders above columns as a header (with bottom margin `--space-4`)
-- Grid: `grid-template-columns: 1fr 1fr; gap: var(--space-5)`
+- Classes: `.two-col-layout`, `.two-col-inner`, `.two-col-header`, `.two-col-grid`, `.col`
+- Centered layout with inner container `max-width: 1100px`
+- Default slot renders above columns as a left-aligned header (h2: 2.4rem, bottom margin `--space-5`)
+- Grid: `grid-template-columns: 1fr 1fr; gap: var(--space-6)`
 - Each `.col`: flexbox column with `gap: var(--content-gap)`
 
 **code-focus** (`code-focus.vue`)
@@ -115,15 +116,15 @@ layout: section
 **quote** (`quote.vue`)
 - Classes: `.quote-layout`, `.quote-content`, `.quote-attribution`
 - Centered both axes, `text-align: center`, padded `var(--space-7)`
-- Quote text: `font-family: var(--font-display); font-size: 2rem; font-weight: 500; font-style: italic`
-- Decorative open-quote (`\201C`) via `::before`: `color: var(--accent); font-size: 3rem`
-- Attribution: `font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em`
+- Quote text: `font-family: var(--font-display); font-size: 2.4rem; font-weight: 500; font-style: italic`
+- Decorative open-quote (`\201C`) via `::before` and close-quote (`\201D`) via `::after`: `color: var(--accent); font-size: 3rem`
+- Attribution: `font-family: var(--font-mono); font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em`
 
 **end** (`end.vue`)
 - Classes: `.end-layout`, `.accent-line`, `.end-content`
-- Vertically centered, left-aligned
+- Vertically centered, horizontally centered (`align-items: center`, `text-align: center`)
 - h1/h2: `font-size: 2.5rem; font-weight: 600`
-- Paragraph: `font-family: var(--font-mono); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary)`
+- Paragraph: `font-family: var(--font-mono); font-size: 1.1rem; letter-spacing: 0.04em; color: var(--text-secondary)`
 - Links: `color: var(--accent)`
 
 ### Layout Examples

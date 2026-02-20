@@ -192,7 +192,7 @@ Numbered list with accent-colored circular markers. Good for summaries and takea
 ]" title="What We Learned" />
 ```
 
-**When to use**: Summary slides, conclusions, "key takeaways" sections. The numbered markers use `--accent` background with `--ctp-crust` text. Renders inside a raised card with border.
+**When to use**: Summary slides, conclusions, "key takeaways" sections. Title renders at 1.3rem in `--accent`. The 32px numbered markers use `--accent` background with `--ctp-crust` text. Point text renders at 1.2rem. Renders inside a raised card with border.
 
 **PDF**: Renders fully. Good for print.
 
@@ -229,7 +229,7 @@ Highlighted message box with type-based styling using Catppuccin colors.
 </Callout>
 ```
 
-**When to use**: Drawing attention to important caveats, tips, or warnings. Each type gets an 8% tinted background, colored left border, and circular icon badge. Use sparingly -- more than 2 per slide dilutes impact.
+**When to use**: Drawing attention to important caveats, tips, or warnings. Each type gets an 8% tinted background, colored left border, and 32px circular icon badge. Title renders at 1.2rem, content at 1.15rem. Use sparingly -- more than 2 per slide dilutes impact.
 
 **PDF**: Renders fully with colors.
 
@@ -250,7 +250,7 @@ Inline quote with attribution. For quotes within content slides (not full-slide 
 </QuoteBlock>
 ```
 
-**When to use**: Quotes within a content slide alongside other elements. Gets a left border in `--accent` with italic text. Author name rendered in `--accent` color. For full-slide quotes, use `layout: quote` instead.
+**When to use**: Quotes within a content slide alongside other elements. Gets a left border in `--accent` with italic text at 1.4rem. Footer text at 0.95rem in mono/uppercase. Author name rendered in `--accent` color. For full-slide quotes, use `layout: quote` instead.
 
 **PDF**: Renders fully.
 
@@ -290,28 +290,31 @@ Simulated terminal with commands that appear one at a time on click.
 
 ### SpeakerCard
 
-Speaker introduction card with name, title, company, and social links.
+Speaker introduction card with avatar, name, handle, title, company, and social links. Horizontal layout with card centered on slide.
 
 **Props:**
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `name` | `string` | *required* | Speaker name |
+| `name` | `string` | *required* | Speaker name (1.75rem, weight 700) |
+| `handle` | `string` | — | Display handle (e.g., `@birdcar`), rendered in mono/muted |
 | `title` | `string` | — | Job title |
 | `company` | `string` | — | Company name (rendered in `--accent`) |
-| `avatar` | `string` | — | Avatar image URL |
-| `links` | `Record<string, string>` | — | Social links (`github`, `twitter`, `linkedin`, `website`) |
+| `avatar` | `string` | — | Avatar image URL (112px circle) |
+| `links` | `Record<string, string>` | — | Social links (`github`, `bluesky`, `linkedin`, `website`) |
 
 **Usage:**
 ```markdown
 <SpeakerCard
-  name="Nick Bird"
+  name="Nick Cannariato"
+  handle="@birdcar"
   title="Senior Support Engineer"
   company="WorkOS"
-  :links="{ github: 'birdcar', twitter: 'birdcar' }"
+  avatar="https://github.com/birdcar.png"
+  :links="{ github: 'birdcar', bluesky: 'birdcar.bsky.social' }"
 />
 ```
 
-**When to use**: Cover slide or introduction slide. One per talk, typically on the first or second slide. Shows initials in an `--accent`-colored circle if no avatar URL is provided. Links auto-generate full URLs from handles.
+**When to use**: Cover slide or introduction slide. One per talk, typically on the first or second slide. Shows initials in an `--accent`-colored circle if no avatar URL is provided. Links auto-generate full URLs from handles. Card is max-width 600px, centered via `margin: 0 auto`, with horizontal flex layout (avatar left, info right).
 
 **PDF**: Renders fully.
 

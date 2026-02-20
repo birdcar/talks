@@ -108,18 +108,18 @@ Alternate between slides that lean on the accent color and slides that are more 
 
 Use for slide titles, section headers, and any text you want to feel bold and structural. Loaded in weights 500, 600, and 700.
 
-- **H1**: 2.8rem, weight 600, tracking -0.02em -- content slide titles
+- **H1**: 3.2rem, weight 600, tracking -0.02em -- content slide titles
 - **H1 (cover)**: 4rem, weight 600, tracking -0.03em -- cover slide title
 - **H1/H2 (section)**: 3rem, weight 600, tracking -0.02em -- section breaks
-- **H2**: 2rem, weight 500, tracking -0.01em -- content slide subtitles
-- **H3**: 1.4rem, weight 500 -- sub-sections
-- **Quote text**: 2rem, weight 500, italic -- quote layout
+- **H2**: 2.4rem, weight 500, tracking -0.01em -- content slide subtitles (consistent across default, two-col, and other layouts)
+- **H3**: 1.8rem, weight 500 -- sub-sections
+- **Quote text**: 2.4rem, weight 500, italic -- quote layout
 
 ### Body Font (Satoshi)
 
 Use for body text, bullet points, and explanatory content. Loaded in weights 400, 500, and 700 (plus 400 italic).
 
-- Body: 1.1rem, weight 400, line-height 1.65
+- Body: 1.4rem, weight 400, line-height 1.65
 - Don't go below 0.9rem -- if text needs to be smaller, you have too much of it
 
 ### Code Font (JetBrains Mono)
@@ -128,7 +128,8 @@ Used in code blocks, terminal demos, inline code, and meta text (attribution, da
 
 - Code blocks: 0.85rem, line-height 1.7, background `--ctp-crust`
 - Inline code: 0.85em, background `--slide-bg-raised`, colored `--accent`
-- Meta text (cover/end attribution): 0.85rem, uppercase, tracking 0.08em
+- Meta text (cover attribution): 0.9rem, uppercase, tracking 0.08em
+- End slide contact: 1.1rem, mono, tracking 0.04em
 - Keep code to 10-15 lines max per slide
 - Use CodeWalkthrough for longer code that needs step-by-step explanation
 
