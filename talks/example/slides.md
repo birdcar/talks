@@ -69,9 +69,11 @@ Demonstrating the shared addon components.
 ## Speaker Card
 
 <SpeakerCard
-  name="Nick Bird"
-  title="Senior Support Engineer"
+  name="Nick Cannariato"
+  handle="@birdcar"
+  title="Solutions Engineer"
   company="WorkOS"
+  avatar="https://github.com/birdcar.png"
   :links="{ github: 'birdcar', twitter: 'birdcar' }"
 />
 
