@@ -77,6 +77,13 @@ Run this after adding/modifying components, layouts, or theme styles.
 
 A **Stop hook** runs `scripts/check-skill-refs.sh` at the end of each session. It checks whether component, layout, or theme files were modified without corresponding reference doc updates, and flags stale references. If flagged, run `/update-refs` to regenerate.
 
+## Deployment
+
+Cloudflare Pages via GitHub Actions. Pushes to `main` trigger `.github/workflows/deploy.yml`:
+- Installs Bun, runs `bun run build:site`, deploys `dist/` with wrangler
+- Requires `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` as repo secrets
+- Custom domain: `talks.birdcar.dev`
+
 ## Package Manager
 
 Bun. Always use `bun install`, never npm/yarn/pnpm.
