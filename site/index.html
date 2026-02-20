@@ -3,108 +3,812 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Talks — birdcar</title>
+    <title>Talks — Nick Cannariato</title>
+    <meta name="description" content="Presentations and talks by Nick Cannariato (@birdcar)" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <style>
+      /* =============================================================
+         Catppuccin Latte — Color Tokens
+         ============================================================= */
       :root {
-        --bg: hsl(230, 25%, 10%);
-        --bg-card: hsl(230, 20%, 14%);
-        --bg-card-hover: hsl(230, 20%, 17%);
-        --text: hsl(220, 15%, 90%);
-        --text-muted: hsl(220, 10%, 60%);
-        --accent: hsl(30, 95%, 55%);
-        --accent-light: hsl(30, 90%, 70%);
+        --base: #eff1f5;
+        --mantle: #e6e9ef;
+        --crust: #dce0e8;
+        --text: #4c4f69;
+        --subtext0: #6c6f85;
+        --subtext1: #5c5f77;
+        --overlay0: #9ca0b0;
+        --surface0: #ccd0da;
+        --surface1: #bcc0cc;
+        --surface2: #acb0be;
+        --sapphire: #209fb5;
+        --mauve: #8839ef;
+        --peach: #fe640b;
+        --lavender: #7287fd;
+        --pink: #ea76cb;
+        --teal: #179299;
+        --green: #40a02b;
+        --red: #d20f39;
+        --yellow: #df8e1d;
       }
 
-      * { margin: 0; padding: 0; box-sizing: border-box; }
+      /* =============================================================
+         Reset & Base
+         ============================================================= */
+      *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
       body {
         font-family: 'DM Sans', system-ui, sans-serif;
-        background: var(--bg);
+        background: var(--base);
         color: var(--text);
         min-height: 100vh;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
-      .container {
-        max-width: 720px;
+      /* =============================================================
+         Animated gradient bar — top accent
+         ============================================================= */
+      .top-bar {
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--sapphire),
+          var(--mauve),
+          var(--peach),
+          var(--pink),
+          var(--teal),
+          var(--sapphire)
+        );
+        background-size: 200% 100%;
+        animation: shimmer 8s ease-in-out infinite;
+      }
+
+      @keyframes shimmer {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+
+      /* =============================================================
+         Decorative floating orbs — ambient background animation
+         ============================================================= */
+      .orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.12;
+        pointer-events: none;
+        z-index: 0;
+        animation: float 20s ease-in-out infinite;
+      }
+
+      .orb--1 {
+        width: 500px;
+        height: 500px;
+        background: var(--sapphire);
+        top: -10%;
+        right: -5%;
+        animation-delay: 0s;
+      }
+
+      .orb--2 {
+        width: 400px;
+        height: 400px;
+        background: var(--mauve);
+        bottom: 10%;
+        left: -8%;
+        animation-delay: -7s;
+      }
+
+      .orb--3 {
+        width: 300px;
+        height: 300px;
+        background: var(--peach);
+        top: 50%;
+        right: 15%;
+        animation-delay: -14s;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        25% { transform: translate(30px, -20px) scale(1.05); }
+        50% { transform: translate(-20px, 15px) scale(0.95); }
+        75% { transform: translate(15px, 25px) scale(1.02); }
+      }
+
+      /* =============================================================
+         Page wrapper
+         ============================================================= */
+      .page {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* =============================================================
+         Hero Section
+         ============================================================= */
+      .hero {
+        max-width: 860px;
         margin: 0 auto;
-        padding: 4rem 1.5rem;
+        padding: 4rem 2rem 3rem;
+        width: 100%;
+        animation: fadeUp 0.6s ease-out both;
       }
 
-      .accent-line {
-        width: 48px;
-        height: 3px;
-        background: var(--accent);
-        border-radius: 2px;
-        margin-bottom: 1.5rem;
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
-      h1 {
+      .hero__inner {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      /* Avatar with animated gradient ring */
+      .avatar-wrap {
+        flex-shrink: 0;
+        position: relative;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        padding: 3px;
+        background: conic-gradient(
+          from 0deg,
+          var(--sapphire),
+          var(--mauve),
+          var(--peach),
+          var(--pink),
+          var(--teal),
+          var(--sapphire)
+        );
+        animation: ring-spin 6s linear infinite;
+      }
+
+      @keyframes ring-spin {
+        to { rotate: 360deg; }
+      }
+
+      .avatar-wrap img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--base);
+      }
+
+      /* Status dot — "online" indicator for personality */
+      .avatar-wrap::after {
+        content: '';
+        position: absolute;
+        bottom: 6px;
+        right: 6px;
+        width: 16px;
+        height: 16px;
+        background: var(--green);
+        border: 3px solid var(--base);
+        border-radius: 50%;
+        z-index: 2;
+      }
+
+      .hero__text {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .hero__name {
         font-family: 'Space Grotesk', system-ui, sans-serif;
         font-size: 2.5rem;
         font-weight: 700;
-        letter-spacing: -0.02em;
-        margin-bottom: 0.5rem;
+        letter-spacing: -0.03em;
+        line-height: 1.15;
       }
 
-      .subtitle {
-        color: var(--text-muted);
-        font-size: 1rem;
-        margin-bottom: 3rem;
+      .hero__name .gradient {
+        background: linear-gradient(135deg, var(--sapphire), var(--mauve) 50%, var(--peach));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero__handle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.85rem;
+        color: var(--sapphire);
+        margin-top: 0.35rem;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .hero__handle:hover {
+        color: var(--mauve);
+      }
+
+      .hero__handle svg {
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+        flex-shrink: 0;
+      }
+
+      .hero__tagline {
+        margin-top: 0.75rem;
+        color: var(--subtext0);
+        font-size: 1.05rem;
+        line-height: 1.6;
+        max-width: 480px;
+      }
+
+      /* =============================================================
+         Section divider with dot ornament
+         ============================================================= */
+      .divider {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        animation: fadeUp 0.6s ease-out 0.15s both;
+      }
+
+      .divider__line {
+        position: relative;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--surface0) 20%, var(--surface0) 80%, transparent);
+      }
+
+      .divider__line::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 8px;
+        height: 8px;
+        background: var(--surface0);
+        border-radius: 50%;
+      }
+
+      /* =============================================================
+         Section header
+         ============================================================= */
+      .section-header {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 2rem 2rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        animation: fadeUp 0.6s ease-out 0.25s both;
+      }
+
+      .section-header__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, var(--sapphire), var(--mauve));
+        border-radius: 8px;
+        flex-shrink: 0;
+      }
+
+      .section-header__icon svg {
+        width: 18px;
+        height: 18px;
+        fill: white;
+      }
+
+      .section-header h2 {
+        font-family: 'Space Grotesk', system-ui, sans-serif;
+        font-size: 1.35rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--text);
+      }
+
+      .section-header__count {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        color: var(--subtext0);
+        background: var(--mantle);
+        border: 1px solid var(--surface0);
+        border-radius: 100px;
+        padding: 0.15rem 0.6rem;
+        line-height: 1.5;
+      }
+
+      /* =============================================================
+         Talk list — card grid
+         ============================================================= */
+      .list-section {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 1.5rem 2rem 4rem;
+        flex: 1;
+        animation: fadeUp 0.6s ease-out 0.35s both;
       }
 
       .talk-list {
         list-style: none;
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr;
         gap: 1rem;
       }
 
+      /* =============================================================
+         Talk card — animated gradient border on hover
+         ============================================================= */
       .talk-card {
         display: block;
-        padding: 1.25rem 1.5rem;
-        background: var(--bg-card);
-        border-radius: 8px;
+        position: relative;
+        padding: 1.5rem 1.75rem;
+        background: white;
+        border-radius: 14px;
         text-decoration: none;
         color: var(--text);
-        transition: background 0.2s, transform 0.15s;
-        border: 1px solid transparent;
+        border: 1px solid var(--surface0);
+        box-shadow: 0 1px 3px rgba(76, 79, 105, 0.04);
+        transition:
+          transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+          border-color 0.25s ease;
+        overflow: hidden;
+        isolation: isolate;
+      }
+
+      /* Animated gradient border overlay — hidden by default */
+      .talk-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 14px;
+        padding: 1.5px;
+        background: linear-gradient(
+          135deg,
+          var(--sapphire),
+          var(--mauve),
+          var(--peach)
+        );
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* Per-card accent color via nth-child — applied to a top-left tag */
+      .talk-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 40%;
+        border-radius: 0 0 4px 0;
+        background: var(--sapphire);
+        transition: height 0.3s ease, opacity 0.3s ease;
+        z-index: 2;
+      }
+
+      li:nth-child(4n+2) .talk-card::after { background: var(--mauve); }
+      li:nth-child(4n+3) .talk-card::after { background: var(--peach); }
+      li:nth-child(4n+4) .talk-card::after { background: var(--teal); }
+
+      /* Hover colors for gradient border per card */
+      li:nth-child(4n+2) .talk-card::before {
+        background: linear-gradient(135deg, var(--mauve), var(--pink), var(--lavender));
+      }
+      li:nth-child(4n+3) .talk-card::before {
+        background: linear-gradient(135deg, var(--peach), var(--yellow), var(--red));
+      }
+      li:nth-child(4n+4) .talk-card::before {
+        background: linear-gradient(135deg, var(--teal), var(--green), var(--sapphire));
+      }
+
+      /* Re-apply mask after background override */
+      li:nth-child(4n+2) .talk-card::before,
+      li:nth-child(4n+3) .talk-card::before,
+      li:nth-child(4n+4) .talk-card::before {
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        padding: 1.5px;
+        border-radius: 14px;
       }
 
       .talk-card:hover {
-        background: var(--bg-card-hover);
-        border-color: hsl(230, 15%, 25%);
-        transform: translateY(-1px);
+        transform: translateY(-4px);
+        box-shadow:
+          0 12px 32px rgba(76, 79, 105, 0.08),
+          0 4px 12px rgba(76, 79, 105, 0.04);
+        border-color: transparent;
       }
 
+      .talk-card:hover::before {
+        opacity: 1;
+      }
+
+      .talk-card:hover::after {
+        height: 100%;
+      }
+
+      /* Hover glow tint per card */
+      li:nth-child(4n+1) .talk-card:hover {
+        box-shadow:
+          0 12px 32px rgba(32, 159, 181, 0.12),
+          0 4px 12px rgba(76, 79, 105, 0.04);
+      }
+      li:nth-child(4n+2) .talk-card:hover {
+        box-shadow:
+          0 12px 32px rgba(136, 57, 239, 0.12),
+          0 4px 12px rgba(76, 79, 105, 0.04);
+      }
+      li:nth-child(4n+3) .talk-card:hover {
+        box-shadow:
+          0 12px 32px rgba(254, 100, 11, 0.10),
+          0 4px 12px rgba(76, 79, 105, 0.04);
+      }
+      li:nth-child(4n+4) .talk-card:hover {
+        box-shadow:
+          0 12px 32px rgba(23, 146, 153, 0.12),
+          0 4px 12px rgba(76, 79, 105, 0.04);
+      }
+
+      .talk-card:focus-visible {
+        outline: 2px solid var(--sapphire);
+        outline-offset: 2px;
+      }
+
+      /* Arrow that slides in on hover */
       .talk-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
         font-family: 'Space Grotesk', system-ui, sans-serif;
         font-size: 1.15rem;
         font-weight: 600;
-        margin-bottom: 0.25rem;
+        line-height: 1.35;
+        margin-bottom: 0.2rem;
       }
+
+      .talk-title::after {
+        content: '\2192';
+        flex-shrink: 0;
+        font-size: 1.15rem;
+        color: var(--overlay0);
+        transform: translateX(-6px);
+        opacity: 0;
+        transition:
+          transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .talk-card:hover .talk-title::after {
+        opacity: 1;
+        transform: translateX(0);
+        color: var(--sapphire);
+      }
+
+      li:nth-child(4n+2) .talk-card:hover .talk-title::after { color: var(--mauve); }
+      li:nth-child(4n+3) .talk-card:hover .talk-title::after { color: var(--peach); }
+      li:nth-child(4n+4) .talk-card:hover .talk-title::after { color: var(--teal); }
 
       .talk-info {
-        font-size: 0.85rem;
-        color: var(--text-muted);
+        font-size: 0.88rem;
+        color: var(--subtext0);
+        line-height: 1.5;
       }
 
+      /* =============================================================
+         Footer
+         ============================================================= */
+      .footer {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 2rem 2rem 3rem;
+        width: 100%;
+      }
+
+      .footer__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--surface0);
+      }
+
+      .footer__built {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        color: var(--overlay0);
+      }
+
+      .footer__built a {
+        color: var(--sapphire);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.2s;
+      }
+
+      .footer__built a:hover {
+        border-bottom-color: var(--sapphire);
+      }
+
+      .footer__links {
+        display: flex;
+        gap: 0.75rem;
+      }
+
+      .footer__link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        color: var(--subtext0);
+        background: var(--mantle);
+        border: 1px solid var(--surface0);
+        transition:
+          color 0.2s,
+          background 0.2s,
+          border-color 0.2s,
+          transform 0.2s;
+        text-decoration: none;
+      }
+
+      .footer__link:hover {
+        color: var(--sapphire);
+        background: white;
+        border-color: var(--sapphire);
+        transform: translateY(-2px);
+      }
+
+      .footer__link svg {
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+      }
+
+      /* =============================================================
+         Empty state
+         ============================================================= */
+      .talk-list:empty::before {
+        content: 'No talks yet \2014 check back soon.';
+        display: block;
+        text-align: center;
+        padding: 4rem 1rem;
+        color: var(--overlay0);
+        font-size: 1rem;
+        grid-column: 1 / -1;
+      }
+
+      .talk-list:empty + .list-section__count-hint {
+        display: none;
+      }
+
+      /* =============================================================
+         Staggered fade-in for talk cards
+         ============================================================= */
+      .talk-list li {
+        animation: cardIn 0.4s ease-out both;
+      }
+
+      .talk-list li:nth-child(1) { animation-delay: 0.4s; }
+      .talk-list li:nth-child(2) { animation-delay: 0.48s; }
+      .talk-list li:nth-child(3) { animation-delay: 0.56s; }
+      .talk-list li:nth-child(4) { animation-delay: 0.64s; }
+      .talk-list li:nth-child(5) { animation-delay: 0.72s; }
+      .talk-list li:nth-child(6) { animation-delay: 0.8s; }
+      .talk-list li:nth-child(7) { animation-delay: 0.88s; }
+      .talk-list li:nth-child(8) { animation-delay: 0.96s; }
+      .talk-list li:nth-child(n+9) { animation-delay: 1s; }
+
+      @keyframes cardIn {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* =============================================================
+         Responsive — medium screens (2-column grid)
+         ============================================================= */
+      @media (min-width: 640px) {
+        .talk-list {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* =============================================================
+         Responsive — large screens
+         ============================================================= */
+      @media (min-width: 900px) {
+        .hero {
+          padding-top: 5rem;
+          padding-bottom: 3.5rem;
+        }
+
+        .hero__name {
+          font-size: 3rem;
+        }
+      }
+
+      /* =============================================================
+         Responsive — small screens
+         ============================================================= */
       @media (max-width: 480px) {
-        .container { padding: 2rem 1rem; }
-        h1 { font-size: 2rem; }
+        .hero {
+          padding: 2.5rem 1.25rem 2rem;
+        }
+
+        .hero__inner {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1.25rem;
+        }
+
+        .avatar-wrap {
+          width: 80px;
+          height: 80px;
+        }
+
+        .avatar-wrap::after {
+          width: 12px;
+          height: 12px;
+          bottom: 4px;
+          right: 4px;
+          border-width: 2px;
+        }
+
+        .hero__name {
+          font-size: 2rem;
+        }
+
+        .hero__tagline {
+          font-size: 0.95rem;
+        }
+
+        .section-header {
+          padding: 1.5rem 1.25rem 0;
+        }
+
+        .list-section {
+          padding: 1.25rem 1.25rem 3rem;
+        }
+
+        .divider {
+          padding: 0 1.25rem;
+        }
+
+        .talk-card {
+          padding: 1.25rem 1.35rem;
+        }
+
+        .talk-title {
+          font-size: 1.05rem;
+        }
+
+        .footer {
+          padding: 1.5rem 1.25rem 2.5rem;
+        }
+
+        .footer__inner {
+          flex-direction: column;
+          align-items: center;
+          gap: 0.75rem;
+        }
+      }
+
+      /* =============================================================
+         Reduced motion — respect user preferences
+         ============================================================= */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+
+        .orb { display: none; }
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="accent-line"></div>
-      <h1>Talks</h1>
-      <p class="subtitle">Presentations by birdcar</p>
-      <ul class="talk-list">
+    <!-- Ambient floating orbs -->
+    <div class="orb orb--1" aria-hidden="true"></div>
+    <div class="orb orb--2" aria-hidden="true"></div>
+    <div class="orb orb--3" aria-hidden="true"></div>
+
+    <div class="page">
+      <div class="top-bar" aria-hidden="true"></div>
+
+      <!-- Hero -->
+      <header class="hero">
+        <div class="hero__inner">
+          <div class="avatar-wrap">
+            <img
+              src="https://github.com/birdcar.png"
+              alt="Nick Cannariato"
+              width="110"
+              height="110"
+              loading="eager"
+            />
+          </div>
+          <div class="hero__text">
+            <h1 class="hero__name">Nick <span class="gradient">Cannariato</span></h1>
+            <a class="hero__handle" href="https://github.com/birdcar" target="_blank" rel="noopener">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+              @birdcar
+            </a>
+            <p class="hero__tagline">Developer, speaker, and builder. Talks on software, teams, and the craft of making things.</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="divider" aria-hidden="true"><div class="divider__line"></div></div>
+
+      <!-- Talks section -->
+      <div class="section-header">
+        <div class="section-header__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12zM10 9h8v2h-8V9zm0 3h4v2h-4v-2zm0-6h8v2h-8V6z"/></svg>
+        </div>
+        <h2>Talks</h2>
+      </div>
+
+      <main class="list-section">
+        <ul class="talk-list">
 {{TALK_LIST}}
-      </ul>
+        </ul>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer__inner">
+          <span class="footer__built">built with <a href="https://sli.dev" target="_blank" rel="noopener">slidev</a></span>
+          <div class="footer__links">
+            <a class="footer__link" href="https://github.com/birdcar" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            </a>
+            <a class="footer__link" href="https://twitter.com/birdcar" target="_blank" rel="noopener" aria-label="Twitter">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   </body>
 </html>
