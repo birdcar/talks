@@ -7,7 +7,7 @@
     "slidev": ">=0.50.0"
   },
   "slidev": {
-    "colorSchema": "dark",
+    "colorSchema": "light",
     "defaults": {
       "fonts": {
         "sans": "Satoshi",
