@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { watchEffect, getCurrentInstance } from 'vue'
-import { palettes, colorNames, type FlavorName, type AccentName } from '../palettes'
+import { palettes, colorNames, type FlavorName, type AccentName } from './palettes'
 
 const instance = getCurrentInstance()
 const slidev = instance?.appContext.config.globalProperties.$slidev
