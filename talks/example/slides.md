@@ -74,7 +74,7 @@ Demonstrating the shared addon components.
   title="Solutions Engineer"
   company="WorkOS"
   avatar="https://github.com/birdcar.png"
-  :links="{ github: 'birdcar', twitter: 'birdcar' }"
+  :links="{ github: 'birdcar' }"
 />
 
 ---

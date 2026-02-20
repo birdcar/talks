@@ -193,10 +193,10 @@ Props:
 
 ```vue
 <SpeakerCard
-  name="Nick Bird"
-  title="Senior Support Engineer"
-  avatar="/images/avatar.jpg"
-  :links="{ github: 'birdcar', twitter: 'birdcar' }"
+  name="Nick Cannariato"
+  title="Solutions Engineer"
+  avatar="https://github.com/birdcar.png"
+  :links="{ github: 'birdcar' }"
 />
 ```
 
@@ -205,7 +205,7 @@ Props:
 - `title` (string): Job title
 - `company` (string): Company name
 - `avatar` (string): Path to avatar image
-- `links` (Record<string, string>): Social links (github, twitter, linkedin, website)
+- `links` (Record<string, string>): Social links (github, bluesky, linkedin, website)
 
 **Implementation steps**:
 1. Create card layout with avatar, text, and link icons
