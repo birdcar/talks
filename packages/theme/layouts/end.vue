@@ -12,7 +12,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   padding: var(--slide-padding);
   height: 100%;
   background: var(--slide-bg);
@@ -32,9 +33,8 @@
 .end-content :deep(p) {
   color: var(--text-secondary);
   font-family: var(--font-mono);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
 }
 
 .end-content :deep(a) {

@@ -44,7 +44,7 @@
   position: absolute;
   bottom: var(--space-6);
   left: var(--slide-padding);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
   font-family: var(--font-mono);
   text-transform: uppercase;

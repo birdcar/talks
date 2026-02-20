@@ -5,17 +5,6 @@
   margin: var(--space-4) 0;
 }
 
-/* Quote layout */
-.quote-layout blockquote {
-  border-left: none;
-  padding: 0;
-  font-size: 1.8rem;
-  font-family: var(--font-display);
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--text-primary);
-}
-
 /* Two-col gap */
 .two-col-layout .col {
   padding: var(--space-4);
