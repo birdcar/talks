@@ -170,7 +170,7 @@ Write the full `slides.md` with:
 layout: cover
 theme: slidev-theme-birdcar
 addons:
-  - slidev-addon-birdcar
+  - birdcar
 title: <title>
 info: <subtitle>
 author: birdcar
@@ -181,6 +181,8 @@ variant:
   background: '<hex color>'
 ---
 ```
+
+**Important**: Slidev auto-prefixes `slidev-addon-` to addon names. Use `birdcar`, not `slidev-addon-birdcar`.
 
 **Slide structure:**
 - Cover slide with `# Title` and subtitle paragraph
@@ -193,7 +195,7 @@ variant:
 **Component selection guide:**
 | Content Type | Component |
 |---|---|
-| Sequential points that build | `AnimatedList` |
+| Sequential points that build | `AnimatedList` (prefer slot syntax — see below) |
 | Code with explanation | `CodePlayground` or `CodeWalkthrough` |
 | CLI demos | `TerminalDemo` |
 | Important callouts | `Callout` |
@@ -286,6 +288,11 @@ Make requested changes and re-verify.
 - Check for unescaped characters in component props (especially quotes and newlines)
 - Verify all component names match exactly (case-sensitive)
 - Ensure frontmatter YAML is valid
+
+**AnimatedList:**
+- Always use template literal strings (backticks) for `:items` prop values — this avoids Vue template parse errors with quotes and apostrophes
+- Use slot syntax (markdown lists as children) when items need rich formatting (bold, code, inline components)
+- When content follows an AnimatedList on the same slide, wrap it in `<div v-click>` so it reveals after the last list item. RoughMark inside trailing content works automatically — it defers its annotation until the parent becomes visible
 
 **No framework feels right:**
 - Try combining two frameworks (e.g., In Medias Res opening + Sisyphean Arc structure)

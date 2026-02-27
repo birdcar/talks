@@ -11,7 +11,7 @@ The first slide's frontmatter configures the entire deck:
 layout: cover
 theme: slidev-theme-birdcar
 addons:
-  - slidev-addon-birdcar
+  - birdcar
 title: My Talk Title
 info: A subtitle or description
 author: birdcar
@@ -25,6 +25,8 @@ variant:
 ```
 
 **Required fields**: `theme`, `addons`, `title`
+
+**Important**: Slidev auto-prefixes `slidev-theme-` and `slidev-addon-` to names. Use `birdcar` for the addon, not `slidev-addon-birdcar`.
 **Optional fields**: `layout`, `info`, `author`, `date`, `transition`, `variant`
 
 Default slide transition is `fade`.

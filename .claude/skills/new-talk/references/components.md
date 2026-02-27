@@ -57,7 +57,9 @@ Hand-drawn annotation using [rough-notation](https://roughnotation.com/) via Sli
 <RoughMark type="box" color="green">Boxed term</RoughMark>
 ```
 
-**When to use**: Drawing attention to specific words or phrases with a hand-drawn feel. Use `at` to reveal annotations sequentially during a presentation. Prefer `underline` or `highlight` for emphasis; `circle` and `box` for calling out single terms.
+**When to use**: Drawing attention to specific words or phrases with a hand-drawn feel. Use `at` to reveal annotations at a specific click index. Prefer `underline` or `highlight` for emphasis; `circle` and `box` for calling out single terms.
+
+**Hidden ancestors**: RoughMark automatically defers its annotation when inside a hidden `v-click` container. The hand-drawn animation plays after the parent becomes visible — no manual `:at` workaround needed.
 
 **PDF**: Annotations render statically (no animation).
 
@@ -153,9 +155,14 @@ List items that appear one at a time on click, with animation.
 
 **Slots:** Default slot accepts markdown list items (rendered as `<li>` elements with `v-click`).
 
-**Usage (props):**
+**Usage:**
 ```markdown
-<AnimatedList :items="['First point', 'Second point', 'Third point']" animation="fade-up" />
+<AnimatedList :items="`First point`, `Second point`, `Third point`" animation="fade-up" />
+```
+
+Always use **template literal strings** (backticks) for items to avoid quote escaping issues with apostrophes and special characters:
+```markdown
+<AnimatedList :items="[`It's a great point`, `"Quoted" content works`, `Apostrophes don't break`]" />
 ```
 
 **Usage (slots):**
@@ -169,7 +176,11 @@ List items that appear one at a time on click, with animation.
 </AnimatedList>
 ```
 
+Use slot syntax when items need rich markdown formatting (bold, code, inline components).
+
 **When to use**: Sequential points where reveal order helps comprehension. Each item gets a left border in `--accent`. Don't use for simple lists that should all be visible.
+
+**Trailing content**: When content follows an AnimatedList on the same slide, wrap it in `<div v-click>` so it reveals after the last list item. RoughMark inside trailing content works automatically — it defers its annotation until the parent becomes visible.
 
 **PDF**: All items visible (no animation).
 

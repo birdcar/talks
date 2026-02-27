@@ -31,6 +31,8 @@ bun run dev my-talk-title
 
 Each talk gets `talks/<slug>/` with `slides.md`, `package.json`, and `slidev.config.ts`.
 
+After scaffolding a new talk, run `bun install --filter '@talks/*'` to create workspace symlinks.
+
 ## Conventions
 
 - Slides are authored in Markdown (`slides.md` is the entry point)
@@ -46,10 +48,12 @@ Each talk gets `talks/<slug>/` with `slides.md`, `package.json`, and `slidev.con
 ---
 theme: slidev-theme-birdcar
 addons:
-  - slidev-addon-birdcar
+  - birdcar
 title: Talk Title
 ---
 ```
+
+**Important**: Slidev auto-prefixes `slidev-theme-` and `slidev-addon-` to names in frontmatter. Use `birdcar`, not `slidev-theme-birdcar` or `slidev-addon-birdcar`.
 
 ## Skills
 
