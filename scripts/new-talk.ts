@@ -27,7 +27,7 @@ writeFileSync(pkgPath, JSON.stringify(pkg, null, 2))
 const slidesTemplate = `---
 theme: slidev-theme-birdcar
 addons:
-  - slidev-addon-birdcar
+  - birdcar
 title: ${name}
 ---
 
