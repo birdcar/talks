@@ -1,8 +1,13 @@
 <template>
   <ul class="animated-list" :class="`animation-${animation}`">
     <template v-if="items && items.length">
-      <li v-for="(item, i) in items" :key="i" v-click class="animated-item" :style="stagger ? { transitionDelay: `${i * stagger}ms` } : {}">
+      <li v-for="(item, i) in items" :key="i" v-click class="animated-item" :style="staggerStyle(i)">
         {{ item }}
+      </li>
+    </template>
+    <template v-else-if="slotListItems.length">
+      <li v-for="(children, i) in slotListItems" :key="i" v-click class="animated-item" :style="staggerStyle(i)">
+        <VNodeRenderer :nodes="children" />
       </li>
     </template>
     <template v-else>
@@ -12,7 +17,12 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(defineProps<{
+import { useSlots, computed, type VNode, type FunctionalComponent } from 'vue'
+
+const VNodeRenderer: FunctionalComponent<{ nodes: VNode[] }> = (props) => props.nodes
+VNodeRenderer.props = ['nodes']
+
+const props = withDefaults(defineProps<{
   items?: string[]
   animation?: 'fade-up' | 'slide-right' | 'fade' | 'scale-in' | 'none'
   stagger?: number
@@ -20,6 +30,30 @@ withDefaults(defineProps<{
   animation: 'fade-up',
   stagger: 0,
 })
+
+const slots = useSlots()
+
+const slotListItems = computed<VNode[][]>(() => {
+  if (props.items?.length || !slots.default) return []
+  const vnodes = slots.default()
+  const items: VNode[][] = []
+  for (const vnode of vnodes) {
+    if (typeof vnode.type === 'string' && (vnode.type === 'ul' || vnode.type === 'ol')) {
+      const children = Array.isArray(vnode.children) ? vnode.children : []
+      for (const child of children) {
+        if (typeof child === 'object' && child !== null && 'type' in child && (child as VNode).type === 'li') {
+          const liChildren = (child as VNode).children
+          items.push(Array.isArray(liChildren) ? liChildren as VNode[] : liChildren ? [liChildren as VNode] : [])
+        }
+      }
+    }
+  }
+  return items
+})
+
+function staggerStyle(i: number) {
+  return props.stagger ? { transitionDelay: `${i * props.stagger}ms` } : undefined
+}
 </script>
 
 <style scoped>
