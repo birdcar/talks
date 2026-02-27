@@ -4,7 +4,7 @@ theme: slidev-theme-birdcar
 addons:
   - birdcar
 title: Spite-Driven Development
-info: "From \"I hate this\" to a narrative engine that writes like me"
+info: 'From "I hate this" to a narrative engine that writes like me'
 author: birdcar
 date: 2026-02-26
 transition: fade

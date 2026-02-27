@@ -366,7 +366,7 @@
         padding: 1.5px;
         background: linear-gradient(
           135deg,
-          var(--sapphire),
+          var(--card-accent, var(--sapphire)),
           var(--mauve),
           var(--peach)
         );
@@ -381,7 +381,7 @@
         z-index: 1;
       }
 
-      /* Per-card accent color via nth-child — applied to a top-left tag */
+      /* Per-card accent color via --card-accent custom property */
       .talk-card::after {
         content: '';
         position: absolute;
@@ -390,43 +390,15 @@
         width: 4px;
         height: 40%;
         border-radius: 0 0 4px 0;
-        background: var(--sapphire);
+        background: var(--card-accent, var(--sapphire));
         transition: height 0.3s ease, opacity 0.3s ease;
         z-index: 2;
-      }
-
-      li:nth-child(4n+2) .talk-card::after { background: var(--mauve); }
-      li:nth-child(4n+3) .talk-card::after { background: var(--peach); }
-      li:nth-child(4n+4) .talk-card::after { background: var(--teal); }
-
-      /* Hover colors for gradient border per card */
-      li:nth-child(4n+2) .talk-card::before {
-        background: linear-gradient(135deg, var(--mauve), var(--pink), var(--lavender));
-      }
-      li:nth-child(4n+3) .talk-card::before {
-        background: linear-gradient(135deg, var(--peach), var(--yellow), var(--red));
-      }
-      li:nth-child(4n+4) .talk-card::before {
-        background: linear-gradient(135deg, var(--teal), var(--green), var(--sapphire));
-      }
-
-      /* Re-apply mask after background override */
-      li:nth-child(4n+2) .talk-card::before,
-      li:nth-child(4n+3) .talk-card::before,
-      li:nth-child(4n+4) .talk-card::before {
-        -webkit-mask:
-          linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        padding: 1.5px;
-        border-radius: 14px;
       }
 
       .talk-card:hover {
         transform: translateY(-4px);
         box-shadow:
-          0 12px 32px rgba(76, 79, 105, 0.08),
+          0 12px 32px color-mix(in srgb, var(--card-accent, var(--sapphire)) 12%, transparent),
           0 4px 12px rgba(76, 79, 105, 0.04);
         border-color: transparent;
       }
@@ -439,30 +411,8 @@
         height: 100%;
       }
 
-      /* Hover glow tint per card */
-      li:nth-child(4n+1) .talk-card:hover {
-        box-shadow:
-          0 12px 32px rgba(32, 159, 181, 0.12),
-          0 4px 12px rgba(76, 79, 105, 0.04);
-      }
-      li:nth-child(4n+2) .talk-card:hover {
-        box-shadow:
-          0 12px 32px rgba(136, 57, 239, 0.12),
-          0 4px 12px rgba(76, 79, 105, 0.04);
-      }
-      li:nth-child(4n+3) .talk-card:hover {
-        box-shadow:
-          0 12px 32px rgba(254, 100, 11, 0.10),
-          0 4px 12px rgba(76, 79, 105, 0.04);
-      }
-      li:nth-child(4n+4) .talk-card:hover {
-        box-shadow:
-          0 12px 32px rgba(23, 146, 153, 0.12),
-          0 4px 12px rgba(76, 79, 105, 0.04);
-      }
-
       .talk-card:focus-visible {
-        outline: 2px solid var(--sapphire);
+        outline: 2px solid var(--card-accent, var(--sapphire));
         outline-offset: 2px;
       }
 
@@ -495,12 +445,8 @@
       .talk-card:hover .talk-title::after {
         opacity: 1;
         transform: translateX(0);
-        color: var(--sapphire);
+        color: var(--card-accent, var(--sapphire));
       }
-
-      li:nth-child(4n+2) .talk-card:hover .talk-title::after { color: var(--mauve); }
-      li:nth-child(4n+3) .talk-card:hover .talk-title::after { color: var(--peach); }
-      li:nth-child(4n+4) .talk-card:hover .talk-title::after { color: var(--teal); }
 
       .talk-info {
         font-size: 0.88rem;
