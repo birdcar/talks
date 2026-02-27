@@ -339,8 +339,14 @@
       /* =============================================================
          Talk card — animated gradient border on hover
          ============================================================= */
+      .talk-list li {
+        display: flex;
+      }
+
       .talk-card {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
         position: relative;
         padding: 1.5rem 1.75rem;
         background: white;
