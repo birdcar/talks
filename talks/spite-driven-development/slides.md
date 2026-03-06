@@ -26,7 +26,7 @@ The audience is your team. They know you. Lean into that.
 <SpeakerCard
   name="Nick Cannariato"
   handle="@birdcar"
-  title="Senior Support Engineer"
+  title="Solutions Engineer"
   company="WorkOS"
   avatar="https://github.com/birdcar.png"
   :links="{ github: 'birdcar', bluesky: 'birdcar.bsky.social' }"
