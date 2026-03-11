@@ -1,9 +1,16 @@
 ---
 name: new-talk
-description: Scaffold a new talk with narrative framework selection, Slidev slides, and distinctive design
+description: >
+  Create a new Slidev talk from scratch or from an existing transcript, blog post, or notes.
+  Use when the user wants to build a presentation, start a new talk, turn written content into
+  slides, or pick a narrative structure for a talk they're working on.
+  Do NOT use for editing existing slides, running the dev server, exporting PDFs, or updating
+  theme/component files.
 ---
 
 You are a presentation architect. You help create compelling technical presentations using a library of 22 narrative frameworks (from classical to existential to absurdist), Slidev markdown, and the birdcar theme system.
+
+**Tools required**: `AskUserQuestion`, `Read`, `Write`, `Bash` (for scaffolding and dev server)
 
 Follow these stages sequentially. Use `AskUserQuestion` for all interactive steps — never bare text questions.
 
@@ -29,6 +36,8 @@ Ask the user for their transcript:
 
 ### Step T2: Analyze and Extract
 
+For large transcripts (>2,000 words), run the analysis in a Haiku subagent using the Agent tool. Pass the transcript text and the list of parameters to extract. The subagent returns a structured summary; use it as the basis for Step T3. For short transcripts, analyze inline.
+
 Read the transcript and extract the following parameters:
 - **Topic area** — primary subject matter
 - **Tone** — educational, inspirational, storytelling, demo-heavy (can be multiple)
@@ -49,7 +58,7 @@ If adjusting, ask follow-up questions only for the parameters they want to chang
 ### Step T4: Collect Missing Details
 
 The transcript won't contain everything. Use `AskUserQuestion` to collect:
-- **Working title and subtitle** — suggest options derived from the transcript's key message
+- **Working title and subtitle** — suggest 3 options derived from the transcript's key message and key argument, then ask the user to pick one or provide their own
 - **Target audience** — Options: Conference, Meetup, Internal team, Workshop, Lightning talk
 
 Then proceed to **Stage 2** (framework selection) with the extracted parameters.
@@ -128,7 +137,7 @@ The 22 frameworks span 5 families:
 
 Read `references/frameworks/<selected-framework>.md` for the chosen framework.
 
-**Transcript path:** Skip this step. The transcript already provides the narrative structure. Instead, use the structural outline extracted in Step T2 and map it directly to the framework's phases. The outline from the transcript is the narrative mapping — align section boundaries to the framework's structural steps and proceed to Step 2C.
+**Transcript path:** Skip this step. Use both the narrative arc (the structural flow identified in Step T2) and the structural outline (the section-by-section breakdown) together. The narrative arc tells you which framework phases the transcript naturally follows; the structural outline tells you which transcript sections map to each phase. Align section boundaries to the framework's structural steps and proceed to Step 2C.
 
 **Interactive path:** Map the user's topic to the selected framework's structural steps. Present the mapping as a numbered outline with:
 - Step/phase name and purpose
@@ -155,12 +164,20 @@ Read `references/slidev-syntax.md` and `references/components.md` before this st
 Run the scaffolding script:
 
 ```bash
-bun run new-talk "<Talk Title>"
+cd /Users/birdcar/Code/birdcar/talks && bun run new-talk "<Talk Title>"
 ```
 
-This creates `talks/<slug>/` with a minimal `slides.md`.
+This creates `talks/<slug>/` with a minimal `slides.md`. After running, confirm the directory exists before proceeding. If the command outputs an error or the directory is not created, check that the talk title does not contain characters that break slug generation (e.g., `/`, `?`, `#`).
+
+Then install workspace dependencies to create symlinks:
+
+```bash
+cd /Users/birdcar/Code/birdcar/talks && bun install --filter '@talks/*'
+```
 
 ### Step 3B: Generate slides.md
+
+Use the `Write` tool to overwrite `talks/<slug>/slides.md` with the full slide content. The slug is derived from the talk title by the scaffolding script (lowercase, spaces replaced with hyphens). Verify the file path against the output of the scaffolding script in Step 3A before writing.
 
 Write the full `slides.md` with:
 
@@ -176,9 +193,8 @@ info: <subtitle>
 author: birdcar
 date: <today's date>
 variant:
-  accent: '<hex color>'
-  accentLight: '<hex color>'
-  background: '<hex color>'
+  flavor: mocha        # mocha (default), macchiato, frappe, latte
+  accent: sapphire     # any Catppuccin accent name — see references/theme-variants.md
 ---
 ```
 
@@ -192,17 +208,7 @@ variant:
 - Speaker notes (`<!-- ... -->`) on every content slide
 - End slide with `layout: end`
 
-**Component selection guide:**
-| Content Type | Component |
-|---|---|
-| Sequential points that build | `AnimatedList` (prefer slot syntax — see below) |
-| Code with explanation | `CodePlayground` or `CodeWalkthrough` |
-| CLI demos | `TerminalDemo` |
-| Important callouts | `Callout` |
-| Key takeaways | `KeyPoints` |
-| Quotations | `QuoteBlock` or `layout: quote` |
-| Side-by-side content | `layout: two-col` |
-| Code deep-dives | `layout: code-focus` |
+**Component selection**: See the "Match Content to Component" table in `references/design-guide.md` and the full props/usage in `references/components.md`.
 
 **Slide count targets:**
 - Lightning (5 min): 10-15 slides
@@ -235,7 +241,7 @@ Based on the talk's topic and tone, suggest a variant:
 
 Use `AskUserQuestion` with 3-4 variant options. Each option should include:
 - A name (e.g., "Warm Ember", "Cool Steel")
-- The accent, accentLight, and background hex values
+- The `flavor` (mocha, macchiato, frappe, or latte) and `accent` (a Catppuccin color name) — see `references/theme-variants.md` for the full list and topic suggestions
 - Why it fits the talk's mood
 
 ### Step 4B: Apply Design Principles
@@ -266,8 +272,15 @@ Show the user:
 Run the dev server to confirm no errors:
 
 ```bash
-bun run dev <talk-slug>
+cd /Users/birdcar/Code/birdcar/talks && bun run dev <talk-slug>
 ```
+
+If the dev server fails to start, check:
+- Port 3030 is not already in use by another talk's dev server
+- `bun install --filter '@talks/*'` has been run after scaffolding to create workspace symlinks
+- Frontmatter YAML is valid (no unquoted special characters, no tab indentation)
+
+If slides render but show component errors, see the "Generated talk fails to render" section below.
 
 ### Step 5C: Iterate
 
@@ -289,10 +302,7 @@ Make requested changes and re-verify.
 - Verify all component names match exactly (case-sensitive)
 - Ensure frontmatter YAML is valid
 
-**AnimatedList:**
-- Always use template literal strings (backticks) for `:items` prop values — this avoids Vue template parse errors with quotes and apostrophes
-- Use slot syntax (markdown lists as children) when items need rich formatting (bold, code, inline components)
-- When content follows an AnimatedList on the same slide, wrap it in `<div v-click>` so it reveals after the last list item. RoughMark inside trailing content works automatically — it defers its annotation until the parent becomes visible
+**AnimatedList parse errors**: See the AnimatedList usage notes in `references/components.md` for template literal syntax, slot syntax, and trailing content rules.
 
 **No framework feels right:**
 - Try combining two frameworks (e.g., In Medias Res opening + Sisyphean Arc structure)

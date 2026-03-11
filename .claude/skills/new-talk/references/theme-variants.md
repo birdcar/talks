@@ -16,7 +16,7 @@ The birdcar theme uses the Catppuccin color system with per-talk flavor and acce
 ---
 theme: slidev-theme-birdcar
 addons:
-  - slidev-addon-birdcar
+  - birdcar
 title: My Talk
 variant:
   flavor: frappe
