@@ -100,7 +100,7 @@ layout: section
 
 # Install it in Claude Desktop
 
-From Cowork, in three clicks — no terminal required.
+From Cowork, no terminal required.
 
 </SectionHeader>
 
