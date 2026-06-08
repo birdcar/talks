@@ -1,4 +1,4 @@
-import { readdirSync, existsSync, rmSync, mkdirSync } from 'fs'
+import { readdirSync, existsSync, rmSync, mkdirSync, copyFileSync } from 'fs'
 import { join } from 'path'
 
 const talksDir = 'talks'
@@ -10,6 +10,10 @@ if (existsSync(distDir)) {
   rmSync(distDir, { recursive: true })
 }
 mkdirSync(talksDistDir, { recursive: true })
+
+// Shared favicon at the deploy root, referenced absolutely (/birdcar-icon.png)
+// by the index page and every talk's `favicon` headmatter.
+copyFileSync(join('site', 'birdcar-icon.png'), join(distDir, 'birdcar-icon.png'))
 
 // The `example` talk is the scaffolding template copied by `new-talk`; it
 // must stay in the repo but should never be published.
