@@ -15,7 +15,7 @@ variant:
 
 # Your Deal, On Wiz-Kid
 
-Set it up once, then run <Highlight color="green">every stage</Highlight> with it.
+Set it up once, then run <Highlight color="green">every deal</Highlight> with it.
 
 <!--
 This is an enablement session, not a feature tour. Goal: by the end, every AE/BDR
