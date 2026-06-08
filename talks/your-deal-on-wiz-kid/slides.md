@@ -277,7 +277,7 @@ this hard — it's what makes the five moves a spiral instead of a to-do list.
 
 ## Meet the deal: <Highlight color="green">Acme</Highlight>
 
-A domain just landed in your inbox: `acme.com`.
+A customer just landed on your calendar: `birdcar@acme.com`.
 
 Brand new. You know nothing yet.
 
