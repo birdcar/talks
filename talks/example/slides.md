@@ -3,7 +3,7 @@ layout: cover
 theme: slidev-theme-birdcar
 addons:
   - birdcar
-favicon: /birdcar-icon.png
+favicon: /favicon-32x32.png
 title: Example Talk
 info: A template talk to validate the monorepo pipeline
 author: birdcar

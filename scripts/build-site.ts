@@ -11,9 +11,11 @@ if (existsSync(distDir)) {
 }
 mkdirSync(talksDistDir, { recursive: true })
 
-// Shared favicon at the deploy root, referenced absolutely (/birdcar-icon.png)
-// by the index page and every talk's `favicon` headmatter.
-copyFileSync(join('site', 'birdcar-icon.png'), join(distDir, 'birdcar-icon.png'))
+// Shared favicons at the deploy root, referenced absolutely by the index page
+// and every talk's `favicon` headmatter. Generated from site/birdcar-icon.png.
+for (const icon of ['favicon-32x32.png', 'apple-touch-icon.png']) {
+  copyFileSync(join('site', icon), join(distDir, icon))
+}
 
 // The `example` talk is the scaffolding template copied by `new-talk`; it
 // must stay in the repo but should never be published.

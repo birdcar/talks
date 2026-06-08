@@ -3,7 +3,7 @@ layout: cover
 theme: slidev-theme-birdcar
 addons:
   - birdcar
-favicon: /birdcar-icon.png
+favicon: /favicon-32x32.png
 title: Your Deal, On Wiz-Kid
 info: Set it up once, run every stage with it.
 author: birdcar

@@ -3,7 +3,7 @@ layout: cover
 theme: slidev-theme-birdcar
 addons:
   - birdcar
-favicon: /birdcar-icon.png
+favicon: /favicon-32x32.png
 title: Spite-Driven Development
 info: 'From "I hate this" to a narrative engine that writes like me'
 author: birdcar
