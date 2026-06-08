@@ -1,9 +1,0 @@
-{
-  "name": "@talks/build-tools-that-build-your-tools",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "slidev-theme-birdcar": "catalog:",
-    "slidev-addon-birdcar": "catalog:"
-  }
-}
