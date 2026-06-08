@@ -11,8 +11,13 @@ if (existsSync(distDir)) {
 }
 mkdirSync(talksDistDir, { recursive: true })
 
-// Discover all talks (directories with a package.json)
+// The `example` talk is the scaffolding template copied by `new-talk`; it
+// must stay in the repo but should never be published.
+const privateTalks = new Set(['example'])
+
+// Discover all talks (directories with a package.json), excluding private ones
 const talks = readdirSync(talksDir).filter((name) => {
+  if (privateTalks.has(name)) return false
   const pkgPath = join(talksDir, name, 'package.json')
   return existsSync(pkgPath)
 })
