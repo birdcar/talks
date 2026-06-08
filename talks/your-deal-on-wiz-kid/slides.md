@@ -584,8 +584,8 @@ Deliberate callback to the earlier slide, same list, annotations changed. This i
 ## Which move do I reach for?
 
 <KeyPoints :points="[
-  'At a stage gate? Run the loop: discover, prepare, review, coach, advance.',
-  'Stuck mid-call or in the hallway? /coach.',
+  'Getting started? Run the loop: discover, prepare, review, advance.',
+  'Just want a spot check on a specific deal issue? /coach.',
   'Ready to package for execs or the customer? /generate-poc and /generate-packet.',
 ]" title="Your cheat sheet" />
 
